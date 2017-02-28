@@ -1,0 +1,40 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ titre }}</title>
+    <link rel="stylesheet" type="text/css" href="{% static "bootstrap-3.3.7-dist/css/bootstrap.css" %}"/>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <h1>What'Sup</h1>
+    </div>
+    <div class="row">
+        <div class="col-lg-2 col-md-2 col-sm-2">
+            {% comment %} Affiche la page des contacts {% endcomment %}
+            <div id="contacts">
+
+            </div>
+        </div>
+
+        <div class="col-lg-10 col-md-10 col-sm-10">
+            {% comment %} Affiche la page du chat {% endcomment %}
+            <div class="container">
+                <div id="chat">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>&copy; What'Sup</footer>
+{% load staticfiles %}
+<script src={% static "jquery-3.1.1.min.js" %}></script>
+<script src={% static "bootstrap-3.3.7-dist/js/bootstrap.min.js" %}></script>
+<script src={% static "global.js" %}></script>
+</body>
+</html>

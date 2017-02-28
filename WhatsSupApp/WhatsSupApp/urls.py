@@ -22,4 +22,7 @@ urlpatterns = [
     url(r'^$', app_view.index, name="home"),
     url(r'^app/', include(app_urls)),
     url(r'^admin/', admin.site.urls),
+    url(r'^global$', app_view.glob),
+    url(r'^contacts$', app_view.contacts),
+    url(r'^chat', app_view.chat),
 ]
