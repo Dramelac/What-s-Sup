@@ -1,0 +1,117 @@
+@media screen and (max-width: 768px) {
+
+  .nav_menu {
+    display: none;
+  }
+
+  #texte_présentation {
+    display: none;
+  }
+
+  #appstore {
+    display: inline;
+    display: block;
+    height: 55px;
+    /*height: 95px;*/
+    width: auto;
+    text-align: center;
+  }
+
+  #texte_secu {
+    display: none;
+  }
+
+  #texte_secuM {
+    display: inline;
+    display: block;
+  }
+
+/*.bouton_accueil_inscrire, .bouton_accueil_connecter{
+   width: auto;
+   height: auto;
+   font-size: 2em;
+}*/
+
+  #texte_présentationM {
+    display: inline;
+    color: aliceblue;
+    display: block;
+  }
+
+  #banniere_securité {
+    display: none;
+  }
+
+  #titre_bienvenue {
+    color: aliceblue;
+  }
+
+  #banniere_securitéM {
+    display: inline;
+    width: 100%;
+    overflow:hidden;
+    -webkit-border-radius:180px;
+    -moz-border-radius:180px;
+    border-radius:250px;
+
+  }
+
+  #frontbase {
+    padding: 50px;
+  }
+
+  body {
+    margin:0;
+    padding:0;
+    border:0;
+    top:0;
+    vertical-align:baseline;
+    font-size: 1.4em;
+    background-color: #3498db;
+    text-align: center;
+    }
+
+  #frontbase1 {
+    padding: 50px;
+    background-color: #C5EFF7;
+    margin-top: 20px;
+  }
+
+  /*#fonctions {
+    padding: 50px;
+    background-color: aliceblue;
+  }*/
+
+  /*#decouvrir {
+    margin-top: 50px;
+    color: darkgrey;
+    text-align: center;
+    width: auto;
+    height: auto;
+    font-size: 2em;
+    overflow:hidden;
+    -webkit-border-radius:180px;
+    -moz-border-radius:180px;
+    border-radius:250px;
+  }*/
+
+  #texte_présentation {
+    color: white;
+  }
+
+  #texte_sécurité {
+    color: #444742;
+  }
+
+  #logo_site {
+    width: 180px;
+    height: 180px;
+    left: 42%;
+    top: 0px;
+  }
+
+  #titre_bienvenue {
+    padding-top: 120px;
+  }
+
+}

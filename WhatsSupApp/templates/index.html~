@@ -1,12 +1,10 @@
-{% load static %}
-
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>What'Sup</title>
-    <link href="{% static "accueil.css" %}" rel="stylesheet" type="text/css">
-    <link href="{% static "accueilmobile.css" %}" rel="stylesheet" type="text/css">
+    <link href="accueil.css" rel="stylesheet" type="text/css">
+    <link href="accueilmobile.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 

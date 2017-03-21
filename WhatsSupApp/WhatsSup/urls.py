@@ -3,4 +3,5 @@ from WhatsSup import views as app_view
 
 urlpatterns = [
     url(r'^$', app_view.appIndex, name="homeApp"),
+    url(r'^$index/', app_view.index)
 ]

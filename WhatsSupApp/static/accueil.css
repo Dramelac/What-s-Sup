@@ -1,0 +1,131 @@
+@font-face {
+    font-family: "Bariol";
+    src: url('Bariol.ttf');
+}
+
+body{
+    margin:0;
+    padding:0;
+    border:0;
+    top:0;
+    vertical-align:baseline;
+    text-align: center;
+    font-family: Bariol, sans-serif;
+    font-size: 2em;
+    background-color: #fbfbf4;
+}
+
+#appstore {
+  display: none;
+}
+
+#texte_présentationM {
+  display: none;
+}
+
+#texte_secuM {
+  display: none;
+}
+
+.nav_menu{
+    height: 60px;
+    width: auto;
+    margin-left: 185px;
+    /*display: block;*/
+    background-color: #2459a3;
+
+}
+
+.nav_menu_index{
+  list-style: none;
+}
+
+.nav_menu_index>li>a{
+    text-decoration: none;
+    font-size: 0.5em;
+    height: 60px;
+    float: left;
+    margin: 20px 20px;
+    color: aliceblue;
+    transition: 0.3s;
+}
+
+.nav_menu_index>li>a:hover{
+  background-color: red;
+}
+
+#logo_site{
+    /*width: 350px;
+    height: 350px;*/
+    position: absolute;
+    left: 100px;
+    top: 15px;
+    /*margin-top: 10px;
+    margin-left: 20px;
+    /*position: relative;*/
+    /*margin-top: 10px;*/
+    margin-left: -20px;
+}
+
+::-moz-selection { /*Pour Firefox */
+    color: aliceblue;
+    background: #084563;
+}
+
+::selection {
+    color: aliceblue;
+    background: #084563;
+}
+
+#titre_bienvenue{
+    color: #2679C7;
+}
+
+#texte_présentation{
+    color: #616163;
+}
+
+.bouton_accueil_inscrire{
+    margin-top: 50px;
+    background-color: #084563;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.bouton_accueil_connecter{
+    margin-top: 50px;
+    background-color: #18af00; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.bouton_accueil_inscrire:hover{
+    background-color: #67AF67;
+}
+
+.bouton_accueil_connecter:hover{
+    background-color: #1dc900;
+}
+
+#banniere_securité{
+    margin-top: 75px;
+    width: 100%
+}
+
+#banniere_securitéM {
+  display: none;
+}
+
+#footer {
+  padding: 50px;
+  background-color: black;
+  color: white;
+}
