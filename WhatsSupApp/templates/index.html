@@ -1,7 +1,7 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="fr" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>What'Sup</title>
@@ -19,13 +19,12 @@
                   <li><a href="https://www.google.fr">Accueil</a></li>          <!--A changer avec liens-->
                   <li><a href="https://www.google.fr">Qui sommes-nous</a></li>
                   <li><a href="https://www.google.fr">Sécurité</a></li>
-                  <li><a href="https://www.google.fr">Fonctionnalitées</a></li>
                 </center>
               </ul>
           </nav>
       </div>
 
-      <img src="logo_whatsup_100x100.png" alt="logo de what'sup" id="logo_site">
+      <img src="{% static "logo_whatsup_100x100.png" %}" alt="logo de what'sup" id="logo_site">
 
       <div id="bloc_accueil_page">
           <h1 id="titre_bienvenue">Bienvenue sur l'application What'Sup.</h1>
@@ -42,7 +41,7 @@
           </p>
 
           <center>
-            <img src="appstore.svg" alt="image_appstore" id="appstore">
+            <img src="{% static "appstore.svg" %}" alt="image_appstore" id="appstore">
           </center>
           <button type="button" class="bouton_accueil_inscrire">S'inscrire</button>
 
@@ -54,8 +53,8 @@
     <div = id="frontbase1">
 
       <div id="texte_sécurité">
-          <img src="banniere_securité_what'sup.png" alt="image_sécurité" id="banniere_securité">
-          <img src="Sanstitre.png" alt="image_sécurité" id="banniere_securitéM">
+          <img src="{% static "banniere_securité_what'sup.png" %}" alt="image_sécurité" id="banniere_securité">
+          <img src="{% static "Sanstitre.png" %}" alt="image_sécurité" id="banniere_securitéM">
           <p id="texte_secu">
               Le système de chiffrment mis en place est composé en deux parties, ce qui rend la sécurité très solide.<br>
               La première solution utilisée est le chiffrage de bout en bout. Ce sytème de chiffrement permet de<br>
@@ -88,8 +87,8 @@ et la méthode de chiffrement utilisée est de type asymétrique avec clé publi
   </p>
 </footer>
 
-<script src="js/lib/jquery-1.9.0.min.js" type="text/javascript"></script>
-<script src="js/jquery.index.js" type="text/javascript"></script>
-<script src="accueil.js"></script>
+<script src="{% static "jquery-1.9.0.min.js" %}" type="text/javascript"></script>
+<script src="{% static "jquery.index.js" %}" type="text/javascript"></script>
+<script src="{% static "accueil.js" %}"></script>
 </body>
 </html>
