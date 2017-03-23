@@ -11,8 +11,12 @@ body{
     vertical-align:baseline;
     text-align: center;
     font-family: Bariol, sans-serif;
-    font-size: 2em;
+    font-size: 1.9em;
     background-color: #fbfbf4;
+}
+
+h1 {
+  padding-top: 155px;
 }
 
 #appstore {
@@ -28,11 +32,11 @@ body{
 }
 
 .nav_menu{
-    height: 60px;
-    width: auto;
-    margin-left: 185px;
-    /*display: block;*/
-    background-color: #2459a3;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #2459a3;
+  font-size: 0.51em;
 
 }
 
@@ -40,31 +44,31 @@ body{
   list-style: none;
 }
 
-.nav_menu_index>li>a{
-    text-decoration: none;
-    font-size: 0.5em;
-    height: 60px;
-    float: left;
-    margin: 20px 20px;
-    color: aliceblue;
-    transition: 0.3s;
+.nav_menu_index>center>li>a{
+  text-decoration: none;
+  color: aliceblue;
+  margin: 40px;
 }
 
-.nav_menu_index>li>a:hover{
-  background-color: red;
+.nav_menu_index>center>li{
+  display: table-cell;
+  padding: 20px;
 }
+
+/*.nav_menu_index>li>a:hover{
+  background-color: red;
+}*/
 
 #logo_site{
     /*width: 350px;
     height: 350px;*/
-    position: absolute;
-    left: 100px;
-    top: 15px;
+    position: fixed;
+    left: 21%;
+    top: -5px;
     /*margin-top: 10px;
     margin-left: 20px;
     /*position: relative;*/
     /*margin-top: 10px;*/
-    margin-left: -20px;
 }
 
 ::-moz-selection { /*Pour Firefox */
