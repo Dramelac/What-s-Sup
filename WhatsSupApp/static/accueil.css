@@ -11,7 +11,7 @@ body{
     vertical-align:baseline;
     text-align: center;
     font-family: Bariol, sans-serif;
-    font-size: 1.9em;
+    font-size: 1.8em;
     background-color: #fbfbf4;
 }
 
@@ -27,8 +27,8 @@ h1 {
   display: none;
 }
 
-#texte_secuM {
-  display: none;
+#texte_secu, #texte_secuM{
+  font-size: 0.9em;
 }
 
 .nav_menu{
@@ -121,7 +121,8 @@ h1 {
 
 #banniere_securité{
     margin-top: 75px;
-    width: 100%
+    width: 100%;
+    height: 420px;
 }
 
 #banniere_securitéM {
