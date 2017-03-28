@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
@@ -8,25 +9,27 @@
 </head>
 <body>
 
-    <div id="frontbase">
+<div id="frontbase">
 
-      <div>
-          <nav class="nav_menu">
+    <div>
+        <nav class="nav_menu">
               <ul class="nav_menu_index">
                   <li><a href="https://www.google.fr">Accueil</a></li>          <!--A changer avec liens-->
                   <li><a href="https://www.google.fr">Qui sommes-nous</a></li>
                   <li><a href="https://www.google.fr">Sécurité</a></li>
+                  <li><a href="https://www.google.fr">Fonctionnalitées</a></li>
               </ul>
           </nav>
-      </div>
+    </div>
 
-      <img src="{% static "logo_whatsup_100x100.png" %}" alt="logo de what'sup" id="logo_site">
+    <img src="{% static "img/logo_whatsup_100x100.png" %}" alt="logo de what'sup" id="logo_site">
+</div>
 {% block body %}
 {% endblock %}
 <footer id="footer">
-  <p>
-    ICI c'est le footer, BATARD !
-  </p>
+    <p>
+        ICI c'est le footer, BATARD !
+    </p>
 </footer>
 
 <script src="{% static "jquery-1.9.0.min.js" %}" type="text/javascript"></script>

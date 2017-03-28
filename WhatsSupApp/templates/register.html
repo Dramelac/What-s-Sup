@@ -1,17 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Connexion</title>
-	<link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
-	<link href="connexion.css" rel="stylesheet" type="text/css">
-</head>
-<body>
+{% extends "layout.html" %}
+{% load static %}
+
+{% block body %}
 <div class="wrapper">
 	<form class="form-signin">
-		<img src="logo_watsup2.png" alt="logo de what'sup" id="logo_site">
+		<img src="{% static "img/logo_watsup2.png" %}" alt="logo de what'sup" id="logo_site">
 		<h2 class="form-signin-heading">Sign In</h2>
 		<input type="text" class="form-control" name="firstname" placeholder="First Name" required="" autofocus="" />
 		<input type="text" class="form-control" name="lastname" placeholder="Last Name" required="" autofocus="" />
@@ -23,7 +16,4 @@
 		</label>
 	</form>
 </div>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-		<script src="bootstrap/js/bootstrap.min.js"></script>
-</body>
-</html>
+{% endblock %}

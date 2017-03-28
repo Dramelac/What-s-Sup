@@ -1,8 +1,16 @@
-# coding: utf8
 from django.shortcuts import render
+
 
 def index(request):
     return render(request, 'index.html')
+
+
+def login(request):
+    return render(request, 'login.html')
+
+
+def register(request):
+    return render(request, 'register.html')
 
 
 def glob(request):
@@ -10,15 +18,13 @@ def glob(request):
     titre = "coucou"
     return render(request, "global.html")
 
+
 def chat(request):
     mon_titre = "Titre passé en variable"
     return render(request, "chat.html")
 
+
 def contacts(request):
     mon_titre = "Titre passé en variable"
     return render(request, "chat.html")
-
-
-def appIndex(request):
-    return render(request, 'appHome.html')
 

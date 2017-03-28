@@ -1,95 +1,59 @@
+{% extends "layout.html" %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="fr" xmlns="http://www.w3.org/1999/html">
-<head>
-    <meta charset="UTF-8">
-    <title>What'Sup</title>
-    <link href="{% static "accueil.css" %}" rel="stylesheet" type="text/css">
-    <link href="{% static "accueilmobile.css" %}" rel="stylesheet" type="text/css">
-</head>
-<body>
+{% block body %}
+<div id="bloc_accueil_page">
+    <h1 id="titre_bienvenue">Bienvenue sur l'application What'Sup.</h1>
 
-    <div id="frontbase">
+    <p id="texte_présentation">
+        Le projet What'Sup est réalisé par le laboratoire de sécurité informatique de Lyon.<br>
+        Ce projet consiste en la réalisation d'une application de chat privé entèrement sécurisé à disposition des
+        élèves de Supinfo<br>
+        pour pouvoir communiquer entres eux en toute sécurité. Le type de sécurité mis en place est de type
+        end-to-end<br>
+        et la méthode de chiffrement utilisée est de type asymétrique avec clé publique et clé privée.
+    </p>
 
-      <div>
-          <nav class="nav_menu">
-              <ul class="nav_menu_index">
-                <center>
-                  <li><a href="https://www.google.fr">Accueil</a></li>          <!--A changer avec liens-->
-                  <li><a href="https://www.google.fr">Qui sommes-nous</a></li>
-                  <li><a href="https://www.google.fr">Sécurité</a></li>
-                  <li><a href="https://www.google.fr">Fonctionnalitées</a></li>
-                </center>
-              </ul>
-          </nav>
-      </div>
+    <p id="texte_présentationM">
+        Avec Whats'Sup, profitez d'une communication rapide, simple et sûre qui est gratuite, et qui est disponible via
+        une adresse @Supinfo, partout dans le monde.
+    </p>
 
-      <img src="{% static "logo_whatsup_100x100.png" %}" alt="logo de what'sup" id="logo_site">
+    <center>
+        <img src="{% static "appstore.svg" %}" alt="image_appstore" id="appstore">
+    </center>
+    <button type="button" class="bouton_accueil_inscrire">S'inscrire</button>
 
-      <div id="bloc_accueil_page">
-          <h1 id="titre_bienvenue">Bienvenue sur l'application What'Sup.</h1>
+    <button type="button" class="bouton_accueil_connecter">Se connecter</button>
+</div>
 
-          <p id="texte_présentation">
-              Le projet What'Sup est réalisé par le laboratoire de sécurité informatique de Lyon.<br>
-              Ce projet consiste en la réalisation d'une application de chat privé entèrement sécurisé à disposition des élèves de Supinfo<br>
-              pour pouvoir communiquer entres eux en toute sécurité. Le type de sécurité mis en place est de type end-to-end<br>
-              et la méthode de chiffrement utilisée est de type asymétrique avec clé publique et clé privée.
-          </p>
+</div>
 
-          <p id="texte_présentationM">
-            Avec Whats'Sup, profitez d'une communication rapide, simple et sûre qui est gratuite, et qui est disponible via une adresse @Supinfo, partout dans le monde.
-          </p>
+<div id="frontbase1">
 
-          <center>
-            <img src="{% static "appstore.svg" %}" alt="image_appstore" id="appstore">
-          </center>
-          <button type="button" class="bouton_accueil_inscrire">S'inscrire</button>
+    <div id="texte_sécurité">
+        <img src="{% static "img/banniere_securité_what'sup.png" %}" alt="image_sécurité" id="banniere_securité">
+        <img src="{% static "img/Sanstitre.png" %}" alt="image_sécurité" id="banniere_securitéM">
+        <p id="texte_secu">
+            Le système de chiffrment mis en place est composé en deux parties, ce qui rend la sécurité très solide.<br>
+            La première solution utilisée est le chiffrage de bout en bout. Ce sytème de chiffrement permet de<br>
+            balbla bla bla bla blaaaaaaaaaaaaaaaaaaaaa<br>
+            La deuxième solution utilisée est le chiffrement avec clé publique, clé privée.<br>
+            Ce système permet d'attribuer une clé privé à chaque utilisateur, et de mettre à disposition<br>
+            une clé publique pour qu'on puisse communiquer avec chacun.
+            blablablablablaaaaaaaaaaaaaaaaaaaaaaaaaa
+        </p>
 
-          <button type="button" class="bouton_accueil_connecter">Se connecter</button>
-      </div>
-
-    </div>
-
-    <div id="frontbase1">
-
-      <div id="texte_sécurité">
-          <img src="{% static "banniere_securité_what'sup.png" %}" alt="image_sécurité" id="banniere_securité">
-          <img src="{% static "Sanstitre.png" %}" alt="image_sécurité" id="banniere_securitéM">
-          <p id="texte_secu">
-              Le système de chiffrment mis en place est composé en deux parties, ce qui rend la sécurité très solide.<br>
-              La première solution utilisée est le chiffrage de bout en bout. Ce sytème de chiffrement permet de<br>
-              balbla bla bla bla blaaaaaaaaaaaaaaaaaaaaa<br>
-              La deuxième solution utilisée est le chiffrement avec clé publique, clé privée.<br>
-              Ce système permet d'attribuer une clé privé à chaque utilisateur, et de mettre à disposition<br>
-              une clé publique pour qu'on puisse communiquer avec chacun.
-              blablablablablaaaaaaaaaaaaaaaaaaaaaaaaaa
-          </p>
-
-          <p id="texte_secuM">
+        <p id="texte_secuM">
             Le projet What'Sup est réalisé par le laboratoire de sécurité informatique de Lyon.
-            Ce projet consiste en la réalisation d'une application de chat privé entèrement sécurisé à disposition des élèves de Supinfo
-            pour pouvoir communiquer entres eux en toute sécurité. Le type de sécurité mis en place est de type end-to-end
+            Ce projet consiste en la réalisation d'une application de chat privé entèrement sécurisé à disposition des
+            élèves de Supinfo
+            pour pouvoir communiquer entres eux en toute sécurité. Le type de sécurité mis en place est de type
+            end-to-end
             et la méthode de chiffrement utilisée est de type asymétrique avec clé publique et clé privée.
-          </p>
-
-      </div>
+        </p>
 
     </div>
 
-<!-- <div id="fonctions">
-  <button id="decouvrir">Découvrez les fonctionnalitées</button>
-</div> -->
-
-
-<footer id="footer">
-  <p>
-    ICI c'est le footer, BATARD !
-  </p>
-</footer>
-
-<script src="{% static "jquery-1.9.0.min.js" %}" type="text/javascript"></script>
-<script src="{% static "jquery.index.js" %}" type="text/javascript"></script>
-<script src="{% static "accueil.js" %}"></script>
-</body>
-</html>
+</div>
+{% endblock %}
