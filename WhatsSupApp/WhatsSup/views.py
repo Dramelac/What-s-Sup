@@ -1,5 +1,5 @@
+#coding:utf-8
 from django.shortcuts import render
-
 
 def index(request):
     return render(request, 'index.html')
@@ -27,4 +27,3 @@ def chat(request):
 def contacts(request):
     mon_titre = "Titre passé en variable"
     return render(request, "chat.html")
-
