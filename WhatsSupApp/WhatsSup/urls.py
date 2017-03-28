@@ -7,4 +7,5 @@ urlpatterns = [
     url(r'^index/', app_view.index, name="index"),
     url(r'^login/', app_view.login, name="login"),
     url(r'^register/', app_view.register, name="register"),
+    url(r'^information/', app_view.information, name="information"),
 ]
