@@ -22,11 +22,9 @@
     <center>
         <img src="{% static "appstore.svg" %}" alt="image_appstore" id="appstore">
     </center>
-    <button type="button" class="bouton_accueil_inscrire">S'inscrire</button>
+    <a class="bouton_accueil_inscrire" href="{% url "register" %}">S'inscrire</a>
 
-    <button type="button" class="bouton_accueil_connecter">Se connecter</button>
-</div>
-
+    <a class="bouton_accueil_connecter" href="{% url "login" %}">Se connecter</a>
 </div>
 
 <div id="frontbase1">
