@@ -1,6 +1,7 @@
 @font-face {
     font-family: "Bariol";
-    src: url('css/Bariol.ttf');
+    src: url('/WhatsSup/static/css/Bariol.ttf');
+
 }
 
 body{
@@ -32,11 +33,12 @@ h1 {
 }
 
 .nav_menu{
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background-color: #2459a3;
-  font-size: 0.51em;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #2459a3;
+    font-size: 0.51em;
+
 
 }
 
@@ -44,15 +46,15 @@ h1 {
   list-style: none;
 }
 
-.nav_menu_index>center>li>a{
-  text-decoration: none;
-  color: aliceblue;
-  margin: 40px;
+.nav_menu_index>li>a{
+    text-decoration: none;
+    color: aliceblue;
+    margin: 40px;
 }
 
-.nav_menu_index>center>li{
-  display: table-cell;
-  padding: 20px;
+.nav_menu_index>li{
+    display: inline;
+    line-height: 60px;
 }
 
 /*.nav_menu_index>li>a:hover{
@@ -89,7 +91,7 @@ h1 {
     color: #616163;
 }
 
-.bouton_accueil_inscrire{
+.bouton_accueil_inscrire, .bouton_accueil_connecter{
     margin-top: 50px;
     background-color: #084563;
     border: none;
@@ -98,17 +100,11 @@ h1 {
     text-align: center;
     display: inline-block;
     font-size: 16px;
+    text-decoration: none;
 }
 
 .bouton_accueil_connecter{
-    margin-top: 50px;
     background-color: #18af00; /* Green */
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    display: inline-block;
-    font-size: 16px;
 }
 
 .bouton_accueil_inscrire:hover{
