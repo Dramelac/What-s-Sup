@@ -4,17 +4,14 @@
 {% block body %}
 <div class="wrapper">
 	<form class="form-signin" method="post" action="/app/login/">
-		<img src="{% static "img/logo_watsup2.png" %}" alt="logo de what'sup" id="logo_site">
+         {% csrf_token %}
 		<h2 class="form-signin-heading">Please login</h2>
-		<input type="text" class="form-control" name="username" placeholder="Email Address" required="" autofocus="" />
+		<input type="text" class="form-control" value="{{ form.pseudo }}" name="pseudo" placeholder="Pseudo" required="" autofocus="" />
 		<input type="password" class="form-control" name="password" placeholder="Password" required=""/>
-		<label class="checkbox">
-			<input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me
-		</label>
 		<label class="button">
 			<button class="btn btn-lg btn-primary " type="submit">Login</button>
-			<button class="btn btn-lg btn-primary " type="submit">Sign up</button>
 		</label>
 	</form>
+    <p>{{ error }}</p>
 </div>
 {% endblock %}
