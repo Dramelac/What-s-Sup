@@ -11,25 +11,28 @@
 <body>
 
     <nav class="nav_menu">
-          <ul class="nav_menu_index">
-              <li><a href="{% url "index" %}">Accueil</a></li>          <!--A changer avec liens-->
-              <li><a href="{% url "information" %}">Qui sommes-nous</a></li>
-              <li><a href="{% url "index" %}">Sécurité</a></li>
-              <li><a href="{% url "index" %}">Fonctionnalitées</a></li>
-          </ul>
-      </nav>
+        <ul class="nav_menu_index">
+            <li><a href="{% url "index" %}">Accueil</a></li>          <!--A changer avec liens-->
+            <li><a href="{% url "information" %}">Qui sommes-nous</a></li>
+            <li><a href="{% url "index" %}">Sécurité</a></li>
+            <li><a href="{% url "index" %}">Fonctionnalitées</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url "logout" %}">Déconnexion</a></li>
+            {% endif %}
+        </ul>
+    </nav>
 
     <img src="{% static "img/logo_whatsup_100x100.png" %}" alt="logo de what'sup" id="logo_site">
 
-{% block body %}
-{% endblock %}
-<footer id="footer">
-    <p>
-        &copy; What'Sup 2017
-    </p>
-</footer>
+    {% block body %}
+    {% endblock %}
+    <footer id="footer">
+        <p>
+            &copy; What'Sup 2017
+        </p>
+    </footer>
 
-<script src="{% static "js/jquery-3.1.1.min.js" %}"></script>
-<script src="{% static "bootstrap-3.3.7-dist/js/bootstrap.min.js" %}"></script>
+    <script src="{% static "js/jquery-3.1.1.min.js" %}"></script>
+    <script src="{% static "bootstrap-3.3.7-dist/js/bootstrap.min.js" %}"></script>
 </body>
 </html>
