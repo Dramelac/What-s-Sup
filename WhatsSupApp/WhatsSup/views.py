@@ -3,8 +3,9 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import User
+from models import *
 import re
+from django.db import IntegrityError
 
 def index(request):
     return render(request, 'index.html')
@@ -70,6 +71,28 @@ def register(request):
                     return render(request, 'register.html', {'error': 'Les mots de passe de sont pas identiques', 'form': request.POST})
             else:
                 return render(request, 'register.html', {'error': 'L\'email n\'est pas valide', 'form': request.POST})
+    else:
+        return HttpResponseRedirect('/')
+
+
+@login_required()
+def store_pub_key(request):
+    if request.method == 'GET':
+        return HttpResponse(status=404)
+    elif request.method == 'POST':
+        pub_key = request.POST.get('pub_key', '')
+        if not pub_key:
+            return HttpResponse(status=400)
+        user = User.objects.get(id=request.user.id)
+        try:
+            Pub_key.objects.create(user=user, pub_key=pub_key)
+        except IntegrityError:
+            db_pub_key = Pub_key.objects.get(user=user)
+            db_pub_key.pub_key = pub_key
+            db_pub_key.save()
+        except:
+            return HttpResponse(status=500)
+        return HttpResponse(status=200)
     else:
         return HttpResponseRedirect('/')
 

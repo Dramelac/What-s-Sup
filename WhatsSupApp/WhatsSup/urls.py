@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^logout/', app_view.logout_view, name="logout"),
     url(r'^register/', app_view.register, name="register"),
     url(r'^information/', app_view.information, name="information"),
+    url(r'^store_pub_key/', app_view.store_pub_key, name="store_pub_key"),
 ]
