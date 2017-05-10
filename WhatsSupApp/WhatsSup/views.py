@@ -30,6 +30,12 @@ def login_view(request):
 
 @login_required()
 def logout_view(request):
+    try:
+        user = User.objects.get(id=request.user.id)
+        db_pub_key = Pub_key.objects.get(user=user)
+        db_pub_key.delete()
+    except:
+        pass
     logout(request)
     return HttpResponseRedirect('/')
 
