@@ -102,22 +102,10 @@ def store_pub_key(request):
     else:
         return HttpResponseRedirect('/')
 
-
-
-def glob(request):
-    # Affiche la page globale (qui va charger chat et contacts)
-    titre = "coucou"
-    return render(request, "global.html")
-
-
+@login_required()
 def chat(request):
-    mon_titre = "Titre passé en variable"
-    return render(request, "chat.html")
-
-
-def contacts(request):
-    mon_titre = "Titre passé en variable"
-    return render(request, "chat.html")
+    users = User.objects.all()
+    return render(request, "chat.html", {'users': users})
 
 def information(request):
     return render(request, "information.html")
