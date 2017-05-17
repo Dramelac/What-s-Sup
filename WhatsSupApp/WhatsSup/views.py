@@ -3,8 +3,9 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import User
+from models import *
 import re
+from django.db import IntegrityError
 
 def index(request):
     return render(request, 'index.html')
@@ -29,6 +30,12 @@ def login_view(request):
 
 @login_required()
 def logout_view(request):
+    try:
+        user = User.objects.get(id=request.user.id)
+        db_pub_key = Pub_key.objects.get(user=user)
+        db_pub_key.delete()
+    except:
+        pass
     logout(request)
     return HttpResponseRedirect('/')
 
@@ -74,21 +81,31 @@ def register(request):
         return HttpResponseRedirect('/')
 
 
+@login_required()
+def store_pub_key(request):
+    if request.method == 'GET':
+        return HttpResponse(status=404)
+    elif request.method == 'POST':
+        pub_key = request.POST.get('pub_key', '')
+        if not pub_key:
+            return HttpResponse(status=400)
+        user = User.objects.get(id=request.user.id)
+        try:
+            Pub_key.objects.create(user=user, pub_key=pub_key)
+        except IntegrityError:
+            db_pub_key = Pub_key.objects.get(user=user)
+            db_pub_key.pub_key = pub_key
+            db_pub_key.save()
+        except:
+            return HttpResponse(status=500)
+        return HttpResponse(status=200)
+    else:
+        return HttpResponseRedirect('/')
 
-def glob(request):
-    # Affiche la page globale (qui va charger chat et contacts)
-    titre = "coucou"
-    return render(request, "global.html")
-
-
+@login_required()
 def chat(request):
-    mon_titre = "Titre passé en variable"
-    return render(request, "chat.html")
-
-
-def contacts(request):
-    mon_titre = "Titre passé en variable"
-    return render(request, "chat.html")
+    users = User.objects.all()
+    return render(request, "chat.html", {'users': users})
 
 def information(request):
     return render(request, "information.html")
