@@ -6,7 +6,7 @@
 
 body{
     margin:0;
-    padding:0;
+    padding-top: 100px;
     border:0;
     top:0;
     vertical-align:baseline;
@@ -14,10 +14,6 @@ body{
     font-family: Bariol, sans-serif;
     font-size: 1.8em;
     background-color: #fbfbf4;
-}
-
-h1 {
-  padding-top: 155px;
 }
 
 #appstore {

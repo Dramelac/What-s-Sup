@@ -7,6 +7,11 @@
     <link href="{% static "bootstrap-3.3.7-dist/css/bootstrap.min.css" %}" type="text/css"/>
     <link href="{% static "css/accueil.css" %}" rel="stylesheet" type="text/css">
     <link href="{% static "css/accueilmobile.css" %}" rel="stylesheet" type="text/css">
+
+    <script src="{% static "js/jquery-3.1.1.min.js" %}"></script>
+    <script src="{% static "bootstrap-3.3.7-dist/js/bootstrap.min.js" %}"></script>
+    {% block head %}
+    {% endblock %}
 </head>
 <body>
 
@@ -32,10 +37,5 @@
         </p>
     </footer>
 
-    <script src="{% static "js/jquery-3.1.1.min.js" %}"></script>
-    <script src="{% static "bootstrap-3.3.7-dist/js/bootstrap.min.js" %}"></script>
-    <script src="{% static "js/cryptico.min.js" %}"></script>
-    <script src="{% static "js/global.js" %}"></script>
-    <script src="{% static "js/crypto.js" %}"></script>
 </body>
 </html>

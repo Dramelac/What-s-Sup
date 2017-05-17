@@ -1,74 +1,38 @@
 {% extends "layout.html" %}
+{%  load static %}
+
+{% block head %}
+    <link href="{% static "css/chat.css" %}" rel="stylesheet" type="text/css">
+    <script src="{% static "js/cryptico.min.js" %}"></script>
+    <script src="{% static "js/crypto.js" %}"></script>
+    <script src="{% static "js/chat.js" %}"></script>
+{% endblock %}
 
 {% block body %}
-    <style>
-    #chat_container {
-        margin-left:20%;
-        width: 60%;
-    }
-    #conv_title {
-        width: 100%;
-        text-align: center;
-    }
-    #messages_container {
-        width: 100%;
-        min-height: 100px;
-    }
-    .my_msg, .his_msg {
-        width: 100%;
-        color: white;
-        min-height: 30px;
-        line-height: 30px;
-        padding-left: 20px;
-        padding-right: 20px;
-        margin-bottom: 10px;
-        word-wrap: break-word;
-    }
-    .my_msg {
-        text-align: right;
-        background: #bdbdbd;
-    }
-    .his_msg {
-        background: dodgerblue;
-    }
-    #write_zone {
-        width: 100%;
-        height: 100px;
-    }
-    </style>
+<span id="me" data-username="{{ user.get_username }}" style="display: none"></span>
+<p>Contacts:</p>
 
-<p>Utilisateurs en ligne:</p>
-  <ul>
-    {% for user in users %}
-      <li data-username="{{ user.username|escape }}">
-        {{ user.username|escape }}
-      </li>
-    {% endfor %}
-  </ul>
+{% for u in users %}
+    {% if user.id != u.id %}
+    <button class="contact-btn" data-username="{{ u.username|escape }}" data-id="{{ u.id }}">
+        {{ u.username|escape }}
+    </button>
+    {% endif %}
+{% endfor %}
+
 <br>
 <br>
 
 <div id="chat_container">
     <div id="conv_title"></div>
-    <div id="messages_container"></div>
+    {% for user in users %}
+        <div class="messages_container" id="chat_with_{{ user.id }}"></div>
+    {% endfor %}
     <form id="chat_form">
+        <input type="hidden" id="receiver_user_id">
         <textarea id="write_zone"></textarea>
         <button type="submit">Envoyer</button>
     </form>
 </div>
 
-
-<script>
-    // Note that the path doesn't matter for routing; any WebSocket
-    // connection gets bumped over to WebSocket consumers
-    socket = new WebSocket("ws://" + window.location.host + "/chat/");
-    socket.onmessage = function(e) {
-        alert(e.data);
-    }
-    socket.onopen = function() {
-        socket.send("hello world");
-    }
-    // Call onopen directly if socket is already open
-    //if (socket.readyState == WebSocket.OPEN) socket.onopen();
-</script>
 {% endblock %}
