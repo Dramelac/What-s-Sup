@@ -1,15 +1,15 @@
 $(function(){
     var myName = $("#me").data("username");
+    var RSAkey;
+    var PublicKeyString;
 
-    // Note that the path doesn't matter for routing; any WebSocket
-    // connection gets bumped over to WebSocket consumers
     var socket = new WebSocket("ws://" + window.location.host + "/chat/");
     socket.onmessage = function(e) {
         var data = JSON.parse(e.data);
         if ($("#chat_with_" + data.sender).css("display") === "none"){
             alert("Nouveau message de " + data.username)
         }
-        createMessage(data.message, data.username, data.sender);
+        createMessage(decrypt(data.message), data.username, data.sender);
     };
 
     $(".contact-btn").on("click", function () {
@@ -27,13 +27,26 @@ $(function(){
         var msg = $("#write_zone").val();
         var receiver_user_id = $("#receiver_user_id").val();
         if (msg.trim().length){
-            socket.send(JSON.stringify({
-                message: msg,
-                username: myName,
-                to: receiver_user_id
-            }));
-            $("#write_zone").val("");
-            createMessage(msg, myName, receiver_user_id)
+            // Get contact PUB Key
+            $.ajax({
+                type: 'POST',
+                url: '/app/get_pub_key/',
+                async: true,
+                data: 'user_id=' + receiver_user_id,
+                success: function (ContactPublicKeyString) {
+                    var encrypted_msg = crypto(msg, ContactPublicKeyString);
+                    socket.send(JSON.stringify({
+                        message: encrypted_msg,
+                        username: myName,
+                        to: receiver_user_id
+                    }));
+                    $("#write_zone").val("");
+                    createMessage(msg, myName, receiver_user_id)
+                },
+                error: function(error) {
+                    alert("L'utilisateur n'est pas connecté")
+                }
+            });
         }
     });
 
@@ -59,4 +72,52 @@ $(function(){
         });
         msg_container.appendTo("#chat_with_" + conv_user_id)
     }
+
+
+    //////////////////////////////////////
+    //              CRYPTO              //
+    //////////////////////////////////////
+
+    function createKey() {
+        RSAkey = cryptico.generateRSAKey("", 2048);
+        PublicKeyString = cryptico.publicKeyString(RSAkey);
+    }
+
+    function loadKey() {
+        if (!PublicKeyString && !RSAkey){
+            createKey();
+        }
+        // Store PUB Key
+        $.ajax({
+            type: 'POST',
+            url: '/app/store_pub_key/',
+            async: true,
+            data: {pub_key: PublicKeyString},
+            error: function(error) {
+                console.log(error)
+                alert(error)
+            }
+        });
+    }
+
+    function crypto(message, pub_key) {
+        var result = cryptico.encrypt(message, pub_key);
+        if (result.status == "success"){
+            return result.cipher.toString();
+        } else {
+            return "error";
+        }
+    }
+
+    function decrypt(message) {
+        var result = cryptico.decrypt(message, RSAkey);
+        if (result.status == "success"){
+            return result.plaintext;
+        } else {
+            return "error";
+        }
+    }
+
+
+    loadKey();
 });

@@ -1,6 +1,7 @@
 import json
 from channels import Group
 from channels.auth import channel_session_user_from_http, channel_session_user
+from models import User, Pub_key
 
 
 @channel_session_user_from_http
@@ -22,6 +23,8 @@ def ws_message(message):
 
 @channel_session_user
 def ws_disconnect(message):
-    print message.channel_session['room']
     room = message.channel_session['room']
     Group(room).discard(message.reply_channel)
+    user = User.objects.get(id=message.user.id)
+    db_pub_key = Pub_key.objects.get(user=user)
+    db_pub_key.delete()

@@ -10,4 +10,5 @@ urlpatterns = [
     url(r'^information/', app_view.information, name="information"),
     url(r'^chat/', app_view.chat, name="chat"),
     url(r'^store_pub_key/', app_view.store_pub_key, name="store_pub_key"),
+    url(r'^get_pub_key/', app_view.get_pub_key, name="get_pub_key"),
 ]

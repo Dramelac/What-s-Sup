@@ -103,6 +103,23 @@ def store_pub_key(request):
         return HttpResponseRedirect('/')
 
 @login_required()
+def get_pub_key(request):
+    if request.method == 'GET':
+        return HttpResponse(status=404)
+    elif request.method == 'POST':
+        user_id = request.POST.get('user_id', '')
+        if not user_id:
+            return HttpResponse(status=400)
+        try:
+            user = User.objects.get(id=user_id)
+            db_pub_key = Pub_key.objects.get(user=user)
+            return HttpResponse(db_pub_key.pub_key)
+        except:
+            return HttpResponse(status=404)
+    else:
+        return HttpResponseRedirect('/')
+
+@login_required()
 def chat(request):
     users = User.objects.all()
     return render(request, "chat.html", {'users': users})
