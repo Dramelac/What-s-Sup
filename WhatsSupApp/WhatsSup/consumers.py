@@ -1,7 +1,9 @@
 import json
+
 from channels import Group
 from channels.auth import channel_session_user_from_http, channel_session_user
-from models import User, Pub_key
+
+from WhatsSup.models import User, Pub_key
 
 
 @channel_session_user_from_http

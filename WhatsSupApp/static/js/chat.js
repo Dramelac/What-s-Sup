@@ -9,7 +9,8 @@ $(function(){
         if ($("#chat_with_" + data.sender).css("display") === "none"){
             alert("Nouveau message de " + data.username)
         }
-        createMessage(decrypt(data.message), data.username, data.sender);
+        //TODO handle error code
+        createMessage(decrypt(data.message).message, data.username, data.sender);
     };
 
     $(".contact-btn").on("click", function () {
