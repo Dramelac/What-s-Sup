@@ -6,8 +6,21 @@ $(function(){
     var socket = new WebSocket("ws://" + window.location.host + "/chat/");
     socket.onmessage = function(e) {
         var data = JSON.parse(e.data);
-        if ($("#chat_with_" + data.sender).css("display") === "none"){
+        var contact_conv = $("#chat_with_" + data.sender);
+        if (contact_conv.length === 0){
+            contact_conv = $('<div/>', {
+                id: "chat_with_" + data.sender,
+                class: "messages_container"
+            });
+            $("#conv_container").append(contact_conv)
+            $("#conv_title").text(data.username);
+            $("#receiver_user_id").val(data.sender);
+            $("#chat_container").show();
+        }
+        if (contact_conv.css("display") === "none"){
             alert("Nouveau message de " + data.username)
+            $(".messages_container").hide();
+            contact_conv.show();
         }
         var decrypted = decrypt(data.message)
         switch(decrypted.code) {

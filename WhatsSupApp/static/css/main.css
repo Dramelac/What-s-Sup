@@ -15,7 +15,9 @@ body{
     font-size: 1.8em;
     background-color: #fbfbf4;
 }
-
+a:focus, a:hover {
+    text-decoration: none;
+}
 #appstore {
   display: none;
 }
@@ -28,34 +30,44 @@ body{
   font-size: 0.9em;
 }
 
-.nav_menu{
-    position: fixed;
-    top: 0;
-    width: 100%;
+
+.navbar {
     background-color: #2459a3;
-    font-size: 0.51em;
-
-
+    font-size: 16px;
 }
-
-.nav_menu_index{
-  list-style: none;
-}
-
-.nav_menu_index>li>a{
-    text-decoration: none;
+.navbar li a {
     color: aliceblue;
-    margin: 40px;
+    padding-right: 25px;
+    padding-left: 25px;
 }
+@media (min-width: 768px) {
+    .navbar .navbar-nav {
+        display: inline-block;
+        float: none;
+        vertical-align: top;
+        min-height: 70px !important;
+    }
 
-.nav_menu_index>li{
-    display: inline;
-    line-height: 60px;
+    .navbar .navbar-collapse {
+        text-align: center;
+    }
+    .navbar-brand {
+        height: 70px;
+    }
+    .navbar li a {
+        line-height: 40px;
+    }
 }
-
-/*.nav_menu_index>li>a:hover{
-  background-color: red;
-}*/
+.navbar-toggle {
+    background-color: white;
+}
+.navbar-toggle .icon-bar {
+    background: #2459a3;
+}
+.nav>li>a:focus, .nav>li>a:hover {
+    background-color: #fbfbf4;
+    color: #2459a3;
+}
 
 #logo_site{
     /*width: 350px;
@@ -117,11 +129,16 @@ body{
 }
 
 #banniere_securitéM {
-  display: none;
+    display: none;
 }
 
 #footer {
-  padding: 50px;
-  background-color: black;
-  color: white;
+    margin-top: 100px;
+    background-color: black;
+    color: white;
+    width: 100%;
+}
+#footer p {
+    padding: 25px;
+    margin: 0;
 }
