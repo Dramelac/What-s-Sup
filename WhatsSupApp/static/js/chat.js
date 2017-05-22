@@ -9,8 +9,21 @@ $(function(){
         if ($("#chat_with_" + data.sender).css("display") === "none"){
             alert("Nouveau message de " + data.username)
         }
-        //TODO handle error code
-        createMessage(decrypt(data.message).message, data.username, data.sender);
+        var decrypted = decrypt(data.message)
+        switch(decrypted.code) {
+            case 0:
+                alert("Etrange.. non signé!")
+                createMessage(decrypted.message, data.username, data.sender);
+                break;
+            case 1:
+                createMessage(decrypted.message, data.username, data.sender);
+                break;
+            case 2:
+                alert("Message modifié !!")
+                break;
+            default:
+                createMessage(decrypted.message, data.username, data.sender);
+        }
     };
 
     $(".contact-btn").on("click", function () {
@@ -79,8 +92,18 @@ $(function(){
     //              CRYPTO              //
     //////////////////////////////////////
 
+    function randomString(size) {
+        var text = "";
+        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!:;,ù*$=)°+£%µ§/.?&é\"\'(-è_çà";
+
+        for (var i = 0; i < size; i++)
+            text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+        return text;
+    }
+
     function createKey() {
-        RSAkey = cryptico.generateRSAKey("", 2048);
+        RSAkey = cryptico.generateRSAKey(randomString(200), 2048);
         PublicKeyString = cryptico.publicKeyString(RSAkey);
     }
 
@@ -112,13 +135,27 @@ $(function(){
 
     function decrypt(message) {
         var result = cryptico.decrypt(message, RSAkey);
-        if (result.status == "success"){
-            return result.plaintext;
-        } else {
-            return "error";
-        }
-    }
+        var code = 0;
+        var messageText = result.plaintext;
 
+        if (result.status == "success") {
+            if (result.signature == "verified") {
+                //good
+                code = 1
+            } else if (result.signature == "forged") {
+                // not good
+                code = 2
+            } else {
+                // strange - not found
+                code = 0
+            }
+            console.log(result.publicKeyString);
+            return {message: result.plaintext, code: 0};
+        } else {
+            messageText = "Error, can't view the message"
+        }
+        return {message: messageText, code: code};
+    }
 
     loadKey();
 });
