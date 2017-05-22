@@ -4,7 +4,7 @@ import re
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
 
 from WhatsSup.models import *
@@ -126,6 +126,23 @@ def get_pub_key(request):
 def chat(request):
     users = User.objects.all()
     return render(request, "chat.html", {'users': users})
+
+@login_required()
+def search_user(request):
+    if request.method == 'GET':
+        return HttpResponse(status=404)
+    elif request.method == 'POST':
+        q = request.POST.get('q', '')
+        if not q:
+            return HttpResponse(status=400)
+        users = User.objects.filter(username__contains=q, pub_key__pub_key__isnull=False)\
+            .values('id', 'username', 'first_name')\
+            .exclude(id=request.user.id)\
+            .exclude(pub_key__pub_key__exact="")
+        return JsonResponse({'users':list(users)})
+    else:
+        return HttpResponseRedirect('/')
+
 
 def information(request):
     return render(request, "information.html")

@@ -26,14 +26,59 @@ $(function(){
         }
     };
 
-    $(".contact-btn").on("click", function () {
+    $("#search_user_form").submit(function (e) {
+        e.preventDefault();
+        var search_query = $("#search_query").val();
+        if (search_query.trim().length){
+            var contact_container = $("#contact_container");
+            contact_container.html("");
+            $.ajax({
+                type: 'POST',
+                url: '/app/search_user/',
+                async: true,
+                data: 'q=' + search_query,
+                success: function (res) {
+                    if (res.users.length === 0){
+                        contact_container.append($('<p/>', {
+                            text: "Pas de résultat",
+                        }));
+                        return;
+                    }
+                    $.each(res.users, function (i, user) {
+                        var contact_btn = $('<button/>', {
+                            text: user.first_name,
+                            class: "contact-btn",
+                            "data-id": user.id,
+                            "data-username": user.first_name,
+                        });
+                        contact_container.append(contact_btn)
+                    })
+                },
+                error: function(error) {
+                    alert("Erreur lors de la recherche")
+                }
+            });
+        }
+    });
+
+    $(document).on("click", ".contact-btn", function () {
         $("#chat_container").show();
         var conv = $(this).data("username");
         var room = $(this).data("id");
         $("#conv_title").text(conv);
         $("#receiver_user_id").val(room);
         $(".messages_container").hide();
-        $("#chat_with_" + room).show();
+        var contact_conv = $("#chat_with_" + room);
+        if (contact_conv.length){
+            contact_conv.show();
+        }
+        else {
+            contact_conv = $('<div/>', {
+                id: "chat_with_" + room,
+                class: "messages_container"
+            });
+            $("#conv_container").append(contact_conv)
+        }
     });
 
     $("#chat_form").submit(function (e) {
@@ -125,8 +170,9 @@ $(function(){
     }
 
     function crypto(message, pub_key) {
-        var result = cryptico.encrypt(message, pub_key);
-        if (result.status == "success"){
+        var result = cryptico.encrypt(message, pub_key, RSAkey);
+        console.log(result);
+        if (result.status === "success"){
             return result.cipher.toString();
         } else {
             return "error";
@@ -137,20 +183,18 @@ $(function(){
         var result = cryptico.decrypt(message, RSAkey);
         var code = 0;
         var messageText = result.plaintext;
-
-        if (result.status == "success") {
-            if (result.signature == "verified") {
+        console.log(result);
+        if (result.status === "success") {
+            if (result.signature === "verified") {
                 //good
                 code = 1
-            } else if (result.signature == "forged") {
+            } else if (result.signature === "forged") {
                 // not good
                 code = 2
             } else {
                 // strange - not found
                 code = 0
             }
-            console.log(result.publicKeyString);
-            return {message: result.plaintext, code: 0};
         } else {
             messageText = "Error, can't view the message"
         }

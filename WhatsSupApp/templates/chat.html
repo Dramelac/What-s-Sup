@@ -9,24 +9,23 @@
 
 {% block body %}
 <span id="me" data-username="{{ user.get_username }}" style="display: none"></span>
-<p>Contacts:</p>
 
-{% for u in users %}
-    {% if user.id != u.id %}
-    <button class="contact-btn" data-username="{{ u.username|escape }}" data-id="{{ u.id }}">
-        {{ u.username|escape }}
+<form id="search_user_form" method="post" action="/app/search_user/">
+    {% csrf_token %}
+    <input type="text" class="form-control" name="q" id="search_query" placeholder="Rechercher un utilisateur" required="" />
+    <button type="submit" class="btn btn-inverse">
+        Rechercher
     </button>
-    {% endif %}
-{% endfor %}
+</form>
+
+<div id="contact_container"></div>
 
 <br>
 <br>
 
 <div id="chat_container">
     <div id="conv_title"></div>
-    {% for user in users %}
-        <div class="messages_container" id="chat_with_{{ user.id }}"></div>
-    {% endfor %}
+    <div id="conv_container"></div>
     <form id="chat_form">
         <input type="hidden" id="receiver_user_id">
         <textarea id="write_zone"></textarea>
