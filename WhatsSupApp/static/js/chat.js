@@ -1,4 +1,7 @@
 $(function(){
+    $(document).ready(function () {
+        $(".wrap").fadeOut(700);
+    })
     var myName = $("#me").data("username");
     var RSAkey;
     var PublicKeyString;
@@ -213,5 +216,5 @@ $(function(){
         return {message: messageText, code: code};
     }
 
-    //loadKey();
+    loadKey();
 });
