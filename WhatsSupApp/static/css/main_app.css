@@ -1,5 +1,12 @@
+body {
+    padding-bottom: 50px;
+}
 .navbar .navbar-collapse {
     text-align: initial;
+}
+
+.navbar-brand {
+    margin-right: 30px;
 }
 
 /* SPINNER */

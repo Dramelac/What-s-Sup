@@ -1,5 +1,6 @@
 $(function(){
     $(document).ready(function () {
+        loadKey();
         $(".wrap").fadeOut(700);
     })
     var myName = $("#me").data("username");
@@ -118,8 +119,14 @@ $(function(){
                     $("#write_zone").val("");
                     createMessage(msg, myName, receiver_user_id)
                 },
-                error: function(error) {
-                    alert("L'utilisateur n'est pas connecté")
+                error: function(jqXHR, textStatus) {
+                    if (jqXHR.responseText === "not_connected") {
+                        alert("L'utilisateur n'est pas connecté")
+                    }
+                    else {
+                        alert(textStatus)
+                        console.log(jqXHR)
+                    }
                 }
             });
         }
@@ -216,5 +223,4 @@ $(function(){
         return {message: messageText, code: code};
     }
 
-    loadKey();
 });

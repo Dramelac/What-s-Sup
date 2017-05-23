@@ -118,7 +118,7 @@ def get_pub_key(request):
             db_pub_key = Pub_key.objects.get(user=user)
             return HttpResponse(db_pub_key.pub_key)
         except:
-            return HttpResponse(status=404)
+            return HttpResponse("not_connected", status=404)
     else:
         return HttpResponseRedirect('/')
 
