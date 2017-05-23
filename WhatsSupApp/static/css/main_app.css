@@ -87,7 +87,7 @@ html, body, .container, .max-height {
     height: 100%;
 }
 
-#custom-search-input{
+#custom-search-input {
     margin-top: 5px;
     padding: 3px;
     border: solid 1px #E4E4E4;
@@ -95,12 +95,12 @@ html, body, .container, .max-height {
     background-color: #fff;
 }
 
-#custom-search-input input{
+#custom-search-input input {
     border: 0;
     box-shadow: none;
 }
 
-#custom-search-input button{
+#custom-search-input button {
     margin: 2px 0 0 0;
     background: none;
     box-shadow: none;
@@ -110,13 +110,13 @@ html, body, .container, .max-height {
     border-left: solid 1px #ccc;
 }
 
-#custom-search-input button:hover{
+#custom-search-input button:hover {
     border: 0;
     box-shadow: none;
     border-left: solid 1px #ccc;
 }
 
-#custom-search-input .glyphicon-search{
+#custom-search-input .glyphicon-search {
     font-size: 23px;
 }
 
@@ -131,6 +131,11 @@ html, body, .container, .max-height {
     text-align: center;
     color: black;
     cursor: pointer;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .contact-btn:hover {
