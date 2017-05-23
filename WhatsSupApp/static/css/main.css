@@ -1,18 +1,11 @@
 @font-face {
     font-family: "Bariol";
     src: url('/static/css/Bariol.ttf');
-
 }
 
 body{
-    margin:0;
     padding-top: 100px;
-    border:0;
-    top:0;
-    vertical-align:baseline;
     font-family: Bariol, sans-serif;
-    font-size: 1.8em;
-    background-color: #fbfbf4;
 }
 h1, h2, h3, h4, h5 {
     text-align: center;
@@ -60,6 +53,7 @@ a:focus, a:hover {
     }
     .navbar li a {
         line-height: 40px;
+        font-size: 17px;
     }
 }
 .navbar-toggle {
@@ -101,10 +95,8 @@ section{
     border: none;
     color: white;
     padding: 15px 32px;
-    text-align: center;
     display: inline-block;
     font-size: 16px;
-    text-decoration: none;
     cursor: pointer;
 }
 
@@ -135,6 +127,7 @@ section{
     color: white;
     width: 100%;
     text-align: center;
+    font-size: 23px;
 }
 #footer p {
     padding: 25px;
