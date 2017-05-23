@@ -153,6 +153,8 @@ $(function(){
             class: who
         });
         msg_container.appendTo("#chat_with_" + conv_user_id)
+        var conv = document.getElementById('chat_with_' + conv_user_id);
+        conv.scrollTop = conv.scrollHeight;
     }
 
 
@@ -193,7 +195,6 @@ $(function(){
 
     function crypto(message, pub_key) {
         var result = cryptico.encrypt(message, pub_key, RSAkey);
-        console.log(result);
         if (result.status === "success"){
             return result.cipher.toString();
         } else {
@@ -205,7 +206,6 @@ $(function(){
         var result = cryptico.decrypt(message, RSAkey);
         var code = 0;
         var messageText = result.plaintext;
-        console.log(result);
         if (result.status === "success") {
             if (result.signature === "verified") {
                 //good
