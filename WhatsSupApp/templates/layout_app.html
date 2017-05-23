@@ -11,6 +11,7 @@
 
     <script src="{% static "js/jquery-3.1.1.min.js" %}"></script>
     <script src="{% static "bootstrap-3.3.7-dist/js/bootstrap.min.js" %}"></script>
+    <script src="{% static "js/main.js" %}"></script>
     {% block head %}
     {% endblock %}
 </head>
@@ -35,10 +36,10 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navbar-collapse-1">
             <ul class="nav navbar-nav">
-                    <li><h2>What'Sup</h2></li>
+                    <li class="pull-left"><h2>What'Sup</h2></li>
                 {% if user.is_authenticated %}
-                    <li class="pull-right"><span>{{ user.get_username }}</span></li>
                     <li class="pull-right"><a href="{% url "logout" %}">Déconnexion</a></li>
+                    <li class="pull-right"><span>{{ user.get_username }}</span></li>
                 {% endif %}
             </ul>
         </div><!-- /.navbar-collapse -->

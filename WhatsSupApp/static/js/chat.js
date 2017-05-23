@@ -176,8 +176,7 @@ $(function(){
             async: true,
             data: {pub_key: PublicKeyString},
             error: function(error) {
-                console.log(error)
-                alert(error)
+                console.log(error);
             }
         });
     }
@@ -214,5 +213,5 @@ $(function(){
         return {message: messageText, code: code};
     }
 
-    loadKey();
+    //loadKey();
 });

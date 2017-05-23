@@ -1,0 +1,10 @@
+.navbar-nav {
+    width: 100%;
+    text-align: center;
+}
+
+.navbar li span {
+    color: aliceblue;
+    padding-right: 25px;
+    padding-left: 25px;
+}
