@@ -2,42 +2,43 @@
 {% load static %}
 
 {% block body %}
-<div id="bloc_accueil_page">
-    {% if user.is_authenticated %}
-        <h1 id="titre_bienvenue">Bienvenue {{ user.first_name }} !</h1>
-    {% else%}
-        <h1 id="titre_bienvenue">Bienvenue sur l'application What'Sup.</h1>
-    {% endif %}
-
-    <p id="texte_présentation">
-        Le projet What'Sup est réalisé par le laboratoire de sécurité informatique de Lyon.<br>
-        Ce projet consiste en la réalisation d'une application de chat privé entèrement sécurisé à disposition des
-        élèves de Supinfo<br>
-        pour pouvoir communiquer entres eux en toute sécurité. Le type de sécurité mis en place est de type
-        end-to-end<br>
-        et la méthode de chiffrement utilisée est de type asymétrique avec clé publique et clé privée.
-    </p>
-
-    <p id="texte_présentationM">
-        Avec Whats'Sup, profitez d'une communication rapide, simple et sûre qui est gratuite, et qui est disponible via
-        une adresse @Supinfo, partout dans le monde.
-    </p>
-
-    <img src="{% static "css/appstore.svg" %}" alt="image_appstore" id="appstore">
-    {% if not user.is_authenticated %}
-        <a class="bouton_accueil_inscrire" href="{% url "register" %}">S'inscrire</a>
-        <a class="bouton_accueil_connecter" href="{% url "login" %}">Se connecter</a>
-    {% else %}
-        <a class="bouton_accueil_connecter" href="{% url "chat" %}">Démarrer le Chat !</a>
-    {% endif %}
+<div class="container-fluid">
+    <div class="row">
+        {% if user.is_authenticated %}
+            <h1 id="titre_bienvenue">Bienvenue {{ user.first_name }} !</h1>
+        {% else%}
+            <h1 id="titre_bienvenue">Bienvenue sur l'application What'Sup.</h1>
+        {% endif %}
+        <section>
+            Le projet What'Sup est réalisé par le laboratoire de sécurité informatique de Lyon.<br>
+            Ce projet consiste en la réalisation d'une application de chat privé entèrement sécurisé à disposition des
+            élèves de Supinfo<br>
+            pour pouvoir communiquer entres eux en toute sécurité. Le type de sécurité mis en place est de type
+            end-to-end<br>
+            et la méthode de chiffrement utilisée est de type asymétrique avec clé publique et clé privée.
+        </section>
+    </div>
+    <div class="row text-center">
+        {% if not user.is_authenticated %}
+            <div class="col-sm-3 col-sm-offset-3 col-xs-6">
+                <a class="bouton_accueil_inscrire" href="{% url "register" %}">S'inscrire</a>
+            </div>
+            <div class="col-sm-3 col-xs-6">
+                <a class="bouton_accueil_connecter" href="{% url "login" %}">Se connecter</a>
+            </div>
+        {% else %}
+            <div class="col-sm-4 col-sm-offset-4">
+                <a class="bouton_accueil_connecter" href="{% url "chat" %}">Démarrer le Chat !</a>
+            </div>
+        {% endif %}
+    </div>
 </div>
 
-<div id="frontbase1">
-
-    <div id="texte_sécurité">
+<div class="container-fluid">
+    <div class="row" id="texte_sécurité">
         <img src="{% static "img/banniere_securité_what'sup.png" %}" alt="image_sécurité" id="banniere_securité">
         <img src="{% static "img/Sanstitre.png" %}" alt="image_sécurité" id="banniere_securitéM">
-        <p id="texte_secu">
+        <section>
             Le système de chiffrment mis en place est composé en deux parties, ce qui rend la sécurité très solide.<br>
             La première solution utilisée est le chiffrage de bout en bout. Ce sytème de chiffrement permet de<br>
             balbla bla bla bla blaaaaaaaaaaaaaaaaaaaaa<br>
@@ -45,18 +46,8 @@
             Ce système permet d'attribuer une clé privé à chaque utilisateur, et de mettre à disposition<br>
             une clé publique pour qu'on puisse communiquer avec chacun.
             blablablablablaaaaaaaaaaaaaaaaaaaaaaaaaa
-        </p>
-
-        <p id="texte_secuM">
-            Le projet What'Sup est réalisé par le laboratoire de sécurité informatique de Lyon.
-            Ce projet consiste en la réalisation d'une application de chat privé entèrement sécurisé à disposition des
-            élèves de Supinfo
-            pour pouvoir communiquer entres eux en toute sécurité. Le type de sécurité mis en place est de type
-            end-to-end
-            et la méthode de chiffrement utilisée est de type asymétrique avec clé publique et clé privée.
-        </p>
+        </section>
 
     </div>
-
 </div>
 {% endblock %}
