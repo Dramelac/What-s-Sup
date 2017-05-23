@@ -61,11 +61,11 @@ $(function(){
                         return;
                     }
                     $.each(res.users, function (i, user) {
-                        var contact_btn = $('<button/>', {
+                        var contact_btn = $('<div/>', {
                             text: user.first_name,
-                            class: "contact-btn",
+                            class: "contact-btn col-md-12",
                             "data-id": user.id,
-                            "data-username": user.first_name,
+                            "data-username": user.first_name
                         });
                         contact_container.append(contact_btn)
                     })
