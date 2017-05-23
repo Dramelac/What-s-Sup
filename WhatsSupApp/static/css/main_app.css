@@ -14,6 +14,7 @@
     background: white;
     z-index: 100;
 }
+
 .spinner {
     width: 100px;
     height: 100px;
@@ -24,6 +25,7 @@
     top: calc(50% - 60px);
     left: calc(50% - 50px);
 }
+
 .spinner:after, .spinner:before {
     content: "";
     display: block;
@@ -41,35 +43,80 @@
     border-top-color: #2459a3;
     border-bottom-color: #2459a3;
     -webkit-animation: spinny 1s linear infinite;
-          animation: spinny 1s linear infinite;
+    animation: spinny 1s linear infinite;
 }
+
 @-webkit-keyframes spinny {
     0% {
-    -webkit-transform: rotate(0deg) scale(1);
-            transform: rotate(0deg) scale(1);
+        -webkit-transform: rotate(0deg) scale(1);
+        transform: rotate(0deg) scale(1);
     }
     50% {
-    -webkit-transform: rotate(72deg) scale(1.4);
-            transform: rotate(72deg) scale(1.4);
+        -webkit-transform: rotate(72deg) scale(1.4);
+        transform: rotate(72deg) scale(1.4);
     }
     100% {
-    -webkit-transform: rotate(360deg) scale(1);
-            transform: rotate(360deg) scale(1);
+        -webkit-transform: rotate(360deg) scale(1);
+        transform: rotate(360deg) scale(1);
     }
 }
 
 @keyframes spinny {
     0% {
-    -webkit-transform: rotate(0deg) scale(1);
-            transform: rotate(0deg) scale(1);
+        -webkit-transform: rotate(0deg) scale(1);
+        transform: rotate(0deg) scale(1);
     }
     50% {
-    -webkit-transform: rotate(72deg) scale(1.4);
-            transform: rotate(72deg) scale(1.4);
+        -webkit-transform: rotate(72deg) scale(1.4);
+        transform: rotate(72deg) scale(1.4);
     }
     100% {
-    -webkit-transform: rotate(360deg) scale(1);
-            transform: rotate(360deg) scale(1);
+        -webkit-transform: rotate(360deg) scale(1);
+        transform: rotate(360deg) scale(1);
     }
 }
+
 /* END SPINNER */
+
+.user_div {
+    box-shadow: 0px 0px 5px #ccc;
+
+    height: calc(100% - 100px);
+    padding-right: 20px;
+}
+
+html, body, .container, .max-height {
+    height: 100%;
+}
+
+#custom-search-input{
+    padding: 3px;
+    border: solid 1px #E4E4E4;
+    border-radius: 6px;
+    background-color: #fff;
+}
+
+#custom-search-input input{
+    border: 0;
+    box-shadow: none;
+}
+
+#custom-search-input button{
+    margin: 2px 0 0 0;
+    background: none;
+    box-shadow: none;
+    border: 0;
+    color: #666666;
+    padding: 0 8px 0 10px;
+    border-left: solid 1px #ccc;
+}
+
+#custom-search-input button:hover{
+    border: 0;
+    box-shadow: none;
+    border-left: solid 1px #ccc;
+}
+
+#custom-search-input .glyphicon-search{
+    font-size: 23px;
+}

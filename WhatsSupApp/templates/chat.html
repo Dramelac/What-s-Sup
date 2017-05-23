@@ -1,5 +1,5 @@
 {% extends "layout_app.html" %}
-{%  load static %}
+{% load static %}
 
 {% block head %}
     <link href="{% static "css/chat.css" %}" rel="stylesheet" type="text/css">
@@ -8,32 +8,42 @@
 {% endblock %}
 
 {% block body %}
-<div class="wrap">
-    <div class="spinner spinner-1"></div>
-</div>
-<span id="me" data-username="{{ user.get_username }}" style="display: none"></span>
+    <div class="wrap">
+        <div class="spinner spinner-1"></div>
+    </div>
 
-<form id="search_user_form" method="post" action="/app/search_user/">
-    {% csrf_token %}
-    <input type="text" class="form-control" name="q" id="search_query" placeholder="Rechercher un utilisateur" required="" />
-    <button type="submit" class="btn btn-inverse">
-        Rechercher
-    </button>
-</form>
+    <div class="row max-height">
+        <div class="col-md-4 user_div">
+            <div id="custom-search-input">
+                <form id="search_user_form" method="post" action="/app/search_user/">
+                    <div class="input-group col-md-12">
 
-<div id="contact_container"></div>
+                        {% csrf_token %}
+                        <input type="text" class="form-control input-lg" name="q" id="search_query"
+                               placeholder="Rechercher un utilisateur"
+                               required=""/>
+                        <span class="input-group-btn">
+                            <button class="btn btn-info btn-lg" type="submit">
+                                <i class="glyphicon glyphicon-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+            <div id="contact_container"></div>
+        </div>
 
-<br>
-<br>
-
-<div id="chat_container">
-    <div id="conv_title"></div>
-    <div id="conv_container"></div>
-    <form id="chat_form">
-        <input type="hidden" id="receiver_user_id">
-        <textarea id="write_zone"></textarea>
-        <button type="submit">Envoyer</button>
-    </form>
-</div>
+        <div class="col-md-8 row">
+            <div id="chat_container">
+                <div id="conv_title"></div>
+                <div id="conv_container"></div>
+                <form id="chat_form">
+                    <input type="hidden" id="receiver_user_id">
+                    <textarea id="write_zone"></textarea>
+                    <button type="submit">Envoyer</button>
+                </form>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}
