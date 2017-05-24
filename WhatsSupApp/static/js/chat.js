@@ -76,7 +76,6 @@ $(function(){
             }
         });
     });
-
     $(document).on("click", ".contact-btn", function () {
         $("#chat_container").show();
         var conv = $(this).data("username");
@@ -86,6 +85,7 @@ $(function(){
         $(".messages_container").hide();
         var contact_conv = $("#chat_with_" + room);
         if (contact_conv.length){
+
             contact_conv.show();
         }
         else {
