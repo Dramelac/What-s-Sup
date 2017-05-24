@@ -3,7 +3,7 @@ $(function(){
         loadKey();
         $(".wrap").fadeOut(700);
     })
-    var myName = $("#me").data("username");
+    var myName = $("#me").data("name");
     var RSAkey;
     var PublicKeyString;
 
@@ -46,36 +46,34 @@ $(function(){
     $("#search_user_form").submit(function (e) {
         e.preventDefault();
         var search_query = $("#search_query").val();
-        if (search_query.trim().length){
-            var contact_container = $("#contact_container");
-            contact_container.html("");
-            $.ajax({
-                type: 'POST',
-                url: '/app/search_user/',
-                async: true,
-                data: 'q=' + search_query,
-                success: function (res) {
-                    if (res.users.length === 0){
-                        contact_container.append($('<p/>', {
-                            text: "Pas de résultat",
-                        }));
-                        return;
-                    }
-                    $.each(res.users, function (i, user) {
-                        var contact_btn = $('<div/>', {
-                            text: user.first_name,
-                            class: "contact-btn col-md-12",
-                            "data-id": user.id,
-                            "data-username": user.first_name
-                        });
-                        contact_container.append(contact_btn)
-                    })
-                },
-                error: function(error) {
-                    alert("Erreur lors de la recherche")
+        var contact_container = $("#contact_container");
+        contact_container.html("");
+        $.ajax({
+            type: 'POST',
+            url: '/app/search_user/',
+            async: true,
+            data: 'q=' + search_query,
+            success: function (res) {
+                if (res.users.length === 0){
+                    contact_container.append($('<p/>', {
+                        text: "Pas de résultat",
+                    }));
+                    return;
                 }
-            });
-        }
+                $.each(res.users, function (i, user) {
+                    var contact_btn = $('<div/>', {
+                        text: user.first_name,
+                        class: "contact-btn col-md-12",
+                        "data-id": user.id,
+                        "data-username": user.first_name
+                    });
+                    contact_container.append(contact_btn)
+                })
+            },
+            error: function(error) {
+                alert("Erreur lors de la recherche")
+            }
+        });
     });
 
     $(document).on("click", ".contact-btn", function () {

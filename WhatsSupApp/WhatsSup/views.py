@@ -133,12 +133,16 @@ def search_user(request):
         return HttpResponse(status=404)
     elif request.method == 'POST':
         q = request.POST.get('q', '')
-        if not q:
-            return HttpResponse(status=400)
-        users = User.objects.filter(username__contains=q, pub_key__pub_key__isnull=False)\
-            .values('id', 'username', 'first_name')\
-            .exclude(id=request.user.id)\
-            .exclude(pub_key__pub_key__exact="")
+        if q:
+            users = User.objects.filter(username__contains=q, pub_key__pub_key__isnull=False) \
+                .values('id', 'username', 'first_name') \
+                .exclude(id=request.user.id) \
+                .exclude(pub_key__pub_key__exact="")[0:10]
+        else:
+            users = User.objects.filter(pub_key__pub_key__isnull=False) \
+                .values('id', 'username', 'first_name') \
+                .exclude(id=request.user.id) \
+                .exclude(pub_key__pub_key__exact="").order_by('first_name')[0:10]
         return JsonResponse({'users':list(users)})
     else:
         return HttpResponseRedirect('/')
