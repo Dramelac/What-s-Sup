@@ -1,0 +1,40 @@
+#chat_container {
+    display: none;
+    margin-left:20%;
+    width: 60%;
+}
+#conv_title {
+    width: 100%;
+    text-align: center;
+}
+.messages_container {
+    width: 100%;
+    height: 50vh;
+    overflow: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.my_msg, .his_msg {
+    width: 60%;
+    color: white;
+    min-height: 30px;
+    line-height: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-bottom: 10px;
+    word-wrap: break-word;
+    font-size: 18px;
+    border-radius: 10px;
+}
+.my_msg {
+    background: #bdbdbd;
+    margin-left: 40%;
+}
+.his_msg {
+    text-align: left;
+    background: #2459a3;
+}
+#write_zone {
+    width: 100%;
+    height: 50px;
+}

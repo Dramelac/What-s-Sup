@@ -25,7 +25,7 @@ SECRET_KEY = 'h+cp@#97n_t*ejc^pxdl=k#_^wh=dyl5l007s5hy@&=0=wc1p^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'WhatsSup',
+    'channels'
 ]
 
 MIDDLEWARE = [
@@ -120,3 +121,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
+
+LOGIN_URL = '/app/login'
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "asgiref.inmemory.ChannelLayer",
+        "ROUTING": "WhatsSup.routing.channel_routing",
+    },
+}

@@ -1,0 +1,158 @@
+@font-face {
+    font-family: "Bariol";
+    src: url('/static/css/Bariol.ttf');
+}
+
+body{
+    padding-top: 100px;
+    font-family: Bariol, sans-serif;
+}
+h1, h2, h3, h4, h5 {
+    text-align: center;
+
+}
+a:focus, a:hover {
+    text-decoration: none;
+}
+#appstore {
+  display: none;
+}
+
+.navbar {
+    background-color: #2459a3;
+    font-size: 16px;
+}
+.navbar li a {
+    color: aliceblue;
+    padding-right: 25px;
+    padding-left: 25px;
+}
+.navbar-brand {
+    padding: 2px 10px;
+}
+#logo_site{
+    height: 46px;
+}
+@media (min-width: 768px) {
+    .navbar .navbar-nav {
+        display: inline-block;
+        float: none;
+        vertical-align: top;
+        min-height: 70px !important;
+    }
+
+    .navbar .navbar-collapse {
+        text-align: center;
+    }
+    .navbar-brand {
+        height: 70px;
+        padding: 5px 0px;
+    }
+    #logo_site{
+        height: 60px;
+    }
+    .navbar li a {
+        line-height: 40px;
+        font-size: 17px;
+    }
+}
+.navbar-toggle {
+    background-color: white;
+}
+.navbar-toggle .icon-bar {
+    background: #2459a3;
+}
+.nav>li>a:focus, .nav>li>a:hover {
+    background-color: #fbfbf4;
+    color: #2459a3;
+}
+
+
+::-moz-selection { /*Pour Firefox */
+    color: aliceblue;
+    background: #084563;
+}
+
+::selection {
+    color: aliceblue;
+    background: #084563;
+}
+
+#titre_bienvenue{
+    color: #2459a3;
+}
+
+section{
+    font-size: 20px;
+    color: #616163;
+    margin-top: 50px;
+    text-align: center;
+}
+
+.bouton_accueil_inscrire, .bouton_accueil_connecter{
+    margin-top: 50px;
+    background-color: #084563;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.bouton_accueil_connecter{
+    background-color: #18af00; /* Green */
+}
+
+.bouton_accueil_inscrire:hover{
+    background-color: #67AF67;
+}
+
+.bouton_accueil_connecter:hover{
+    background-color: #1dc900;
+}
+
+#banniere_securité{
+    margin-top: 75px;
+    width: 100%;
+}
+
+#banniere_securitéM {
+    display: none;
+}
+
+#footer {
+    margin-top: 100px;
+    background-color: black;
+    color: white;
+    width: 100%;
+    text-align: center;
+    font-size: 23px;
+}
+#footer p {
+    padding: 25px;
+    margin: 0;
+}
+.form-control:focus {
+    border-color: #2459a3;
+}
+.btn {
+    border-radius: 12px;
+    outline: none!important;
+}
+.btn-primary {
+    background-color: #2459a3;
+    border: solid 2px #2459a3;
+    transition: all 0.3s ease-in-out;
+}
+.btn-primary:hover {
+    color: #2459a3!important;
+    background-color: white!important;
+    border-color: #2459a3!important;
+    text-overline: none;
+}
+.btn-primary:active , .btn-primary:focus {
+    color: white!important;
+    background-color: #2459a3!important;
+    border-color: #2459a3!important;
+}
