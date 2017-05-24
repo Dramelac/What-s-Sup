@@ -2,6 +2,7 @@ $(function(){
     $(document).ready(function () {
         loadKey();
         $(".wrap").fadeOut(700);
+        $("#search_user_form").submit();
     })
     var myName = $("#me").data("name");
     var RSAkey;
