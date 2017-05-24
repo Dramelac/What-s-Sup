@@ -8,4 +8,4 @@ class Message(models.Model):
 
 class Pub_key(models.Model):
     user = models.OneToOneField(User)
-    pub_key = models.CharField(max_length=256)
+    pub_key = models.CharField(max_length=3000)
