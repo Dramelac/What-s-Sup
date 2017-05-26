@@ -38,8 +38,8 @@
             <ul class="nav navbar-nav">
                 <li><a href="{% url "index" %}">Accueil</a></li>          <!--A changer avec liens-->
                 <li><a href="{% url "information" %}">Qui sommes-nous</a></li>
-                <li><a href="{% url "index" %}">Sécurité</a></li>
-                <li><a href="{% url "index" %}">Fonctionnalitées</a></li>
+                <li><a href="{% url "securite" %}">Sécurité</a></li>
+                <li><a href="{% url "fonctionnalite" %}">Fonctionnalitées</a></li>
                 {% if user.is_authenticated %}
                     <li><a href="{% url "logout" %}">Déconnexion</a></li>
                 {% endif %}

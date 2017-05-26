@@ -12,4 +12,6 @@ urlpatterns = [
     url(r'^store_pub_key/', app_view.store_pub_key, name="store_pub_key"),
     url(r'^get_pub_key/', app_view.get_pub_key, name="get_pub_key"),
     url(r'^search_user/', app_view.search_user, name="search_user"),
+    url(r'^securite/', app_view.securite, name="securite"),
+    url(r'^fonctionnalite/', app_view.fonctionnalite, name="fonctionnalite"),
 ]

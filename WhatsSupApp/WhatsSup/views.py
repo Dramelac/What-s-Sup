@@ -11,7 +11,7 @@ from WhatsSup.models import *
 
 
 def index(request):
-    return render(request, 'index.html')
+    return render(request, 'index.html',)
 
 
 def login_view(request):
@@ -150,3 +150,10 @@ def search_user(request):
 
 def information(request):
     return render(request, "information.html")
+
+def securite(request):
+    return render(request, "securite.html")
+
+
+def fonctionnalite(request):
+    return render(request,"Fonctionnalité.html" )
