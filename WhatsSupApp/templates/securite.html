@@ -2,7 +2,13 @@
 {% load static %}
 {% block body %}
 <section>
-    Pour permettre une sécurité des messages en cas d'attaque de type Man In The Middle nous avons utilisé le chiffrement RSA :
+    <H2>Présentation</H2>
+    Pour permettre une sécurité des messages en cas d'attaque de type Man In The Middle (MITM) nous avons utilisé le chiffrement RSA.
+
+    <h2>Sécurité</h2>
+    Pour assuré l'intégrité des message en cas d'attaque Man In The Middle c'est a dire en cas d'interception du messages par un pirates,
+    nous avons choisi d'utiloiser la méthode End To End c'est à dire que le message sera chiffré durant tout sont transfert.
+    <h2>Chiffrement RSA</h2>
     le principe consiste a généré une paire de clé une qui est publique elle sera donc distribué et accessible
     et l'autre privé qui comme son nom l'indique ne sera pas accessibles.
     Voici un exemple définissant l'utilisation du RSA:<br>
@@ -11,12 +17,13 @@
     le message,une fois le message chiffré et signé, il sera reçu par l'utilisateur A qui utilisera sa clé privé pour déchiffré le message et vérifié sa signature.<br>
 
     Ici les clés générées ont une taille de 2048 bits et une passphrase de 250 caractéres<br>
+    
+   Voici un exemple montrant le principe d'utilisation de la signature<br>
+    <br><img src="{% static "img/signature.png" %}" alt="image_Signature"><br>
 
     Voici un exemple illustrant le transfert d'un message chiffré<br>
         <br><img src="{% static "img/RSA.png" %}" alt="image_RSA"><br>
 
-    Voici un exemple montrant le principe d'utilisation de la signature<br>
-    <br><img src="{% static "img/signature.png" %}" alt="image_Signature"><br>
 
 
 
