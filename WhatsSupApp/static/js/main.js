@@ -30,6 +30,9 @@ $(document).ready(function () {
     // });
 });
 
+$(document).on("click", "#logout_link", function () {
+   localStorage.removeItem("RSAkeyString");
+});
 
 function getCookie(name) {
     var cookieValue = null;

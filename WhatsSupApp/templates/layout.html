@@ -41,7 +41,7 @@
                 <li><a href="{% url "securite" %}">Sécurité</a></li>
                 <li><a href="{% url "fonctionnalite" %}">Technologies</a></li>
                 {% if user.is_authenticated %}
-                    <li><a href="{% url "logout" %}">Déconnexion</a></li>
+                    <li><a id="logout_link" href="{% url "logout" %}">Déconnexion</a></li>
                 {% endif %}
             </ul>
         </div><!-- /.navbar-collapse -->
