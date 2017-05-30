@@ -3,7 +3,7 @@ $(function () {
         loadKey();
         $(".wrap").fadeOut(700);
         $("#search_user_form").submit();
-    })
+    });
     var myName = $("#me").data("name");
     var RSAkey;
     var PublicKeyString;
@@ -17,27 +17,27 @@ $(function () {
                 id: "chat_with_" + data.sender,
                 class: "messages_container"
             });
-            $("#conv_container").append(contact_conv)
+            $("#conv_container").append(contact_conv);
             $("#conv_title").text(data.username);
             $("#receiver_user_id").val(data.sender);
             $("#chat_container").show();
         }
         if (contact_conv.css("display") === "none") {
-            alert("Nouveau message de " + data.username)
+            alert("Nouveau message de " + data.username);
             $(".messages_container").hide();
             contact_conv.show();
         }
-        var decrypted = decrypt(data.message)
+        var decrypted = decrypt(data.message);
         switch (decrypted.code) {
             case 0:
-                alert("Etrange.. non signé!")
+                alert("Etrange.. non signé!");
                 createMessage(decrypted.message, data.username, data.sender);
                 break;
             case 1:
                 createMessage(decrypted.message, data.username, data.sender);
                 break;
             case 2:
-                alert("Message modifié !!")
+                alert("Message modifié !!");
                 break;
             default:
                 createMessage(decrypted.message, data.username, data.sender);
@@ -57,7 +57,7 @@ $(function () {
             success: function (res) {
                 if (res.users.length === 0) {
                     contact_container.append($('<p/>', {
-                        text: "Pas de résultat",
+                        text: "Pas de résultat"
                     }));
                     return;
                 }
@@ -123,7 +123,7 @@ $(function () {
                         alert("L'utilisateur n'est pas connecté")
                     }
                     else {
-                        alert(textStatus)
+                        alert(textStatus);
                         console.log(jqXHR)
                     }
                 }
@@ -151,7 +151,7 @@ $(function () {
             text: msg,
             class: who
         });
-        msg_container.appendTo("#chat_with_" + conv_user_id)
+        msg_container.appendTo("#chat_with_" + conv_user_id);
         var conv = document.getElementById('chat_with_' + conv_user_id);
         conv.scrollTop = conv.scrollHeight;
     }
@@ -170,7 +170,7 @@ $(function () {
 
         return text;
     }
-    
+
 
     function RSAToJSON(key) {
         return {
