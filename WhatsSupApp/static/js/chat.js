@@ -18,14 +18,9 @@ $(function () {
                 class: "messages_container"
             });
             $("#conv_container").append(contact_conv);
-            $("#conv_title").text(data.username);
-            $("#receiver_user_id").val(data.sender);
-            $("#chat_container").show();
         }
         if (contact_conv.css("display") === "none") {
-            alert("Nouveau message de " + data.username);
-            $(".messages_container").hide();
-            contact_conv.show();
+            $("#contact_container").find("[data-id=" + data.sender + "]").attr("class", "contact-btn col-md-12 new_message");
         }
         var decrypted = decrypt(data.message);
         switch (decrypted.code) {
@@ -78,6 +73,7 @@ $(function () {
     });
     $(document).on("click", ".contact-btn", function () {
         $("#chat_container").show();
+        $(this).removeClass("new_message");
         var conv = $(this).data("username");
         var room = $(this).data("id");
         $("#conv_title").text(conv);
