@@ -1,4 +1,4 @@
-#coding:utf-8
+# coding:utf-8
 import re
 
 from django.contrib.auth import authenticate, login, logout
@@ -11,7 +11,7 @@ from WhatsSup.models import *
 
 
 def index(request):
-    return render(request, 'index.html',)
+    return render(request, 'index.html', )
 
 
 def login_view(request):
@@ -27,9 +27,11 @@ def login_view(request):
             login(request, user)
             return HttpResponseRedirect('/')
         else:
-            return render(request, 'login.html', {'error': 'Veuillez vérifier votre pseudo ou mot de passe', 'form': request.POST})
+            return render(request, 'login.html',
+                          {'error': 'Veuillez vérifier votre pseudo ou mot de passe', 'form': request.POST})
     else:
         return HttpResponseRedirect('/')
+
 
 @login_required()
 def logout_view(request):
@@ -52,9 +54,9 @@ def register(request):
         pseudo = request.POST.get('pseudo', '')
         firstname = request.POST.get('firstname', '')
         lastname = request.POST.get('lastname', '')
-        email = request.POST.get('email','').lower()
-        psw1 = request.POST.get('password1','')
-        psw2 = request.POST.get('password2','')
+        email = request.POST.get('email', '').lower()
+        psw1 = request.POST.get('password1', '')
+        psw2 = request.POST.get('password2', '')
         if not pseudo or not firstname or not lastname or not email or not psw1 or not psw2:
             return render(request, 'register.html', {'error': 'Veuillez remplir tous les champs', 'form': request.POST})
         try:
@@ -63,9 +65,10 @@ def register(request):
         except User.DoesNotExist:
             regex = re.compile(r"^[a-z0-9._-]+@[a-z0-9._-]+\.[a-z]+")
             if regex.match(email) is not None:
-                if psw1==psw2:
-                    if len(psw1)>=6:
-                        User.objects.create_user(username=pseudo, last_name=lastname, first_name=firstname, email=email, password=psw1)
+                if psw1 == psw2:
+                    if len(psw1) >= 6:
+                        User.objects.create_user(username=pseudo, last_name=lastname, first_name=firstname, email=email,
+                                                 password=psw1)
                         user = authenticate(username=pseudo, password=psw1)
                         if user is not None:
                             login(request, user)
@@ -75,9 +78,12 @@ def register(request):
                                           {'error': 'Erreur lors le la connexion.',
                                            'form': request.POST})
                     else:
-                        return render(request, 'register.html', {'error': 'Le mot de passe doit faire au moins 6 caractères', 'form': request.POST})
+                        return render(request, 'register.html',
+                                      {'error': 'Le mot de passe doit faire au moins 6 caractères',
+                                       'form': request.POST})
                 else:
-                    return render(request, 'register.html', {'error': 'Les mots de passe de sont pas identiques', 'form': request.POST})
+                    return render(request, 'register.html',
+                                  {'error': 'Les mots de passe de sont pas identiques', 'form': request.POST})
             else:
                 return render(request, 'register.html', {'error': 'L\'email n\'est pas valide', 'form': request.POST})
     else:
@@ -105,6 +111,7 @@ def store_pub_key(request):
     else:
         return HttpResponseRedirect('/')
 
+
 @login_required()
 def get_pub_key(request):
     if request.method == 'GET':
@@ -122,10 +129,12 @@ def get_pub_key(request):
     else:
         return HttpResponseRedirect('/')
 
+
 @login_required()
 def chat(request):
     users = User.objects.all()
     return render(request, "chat.html", {'users': users})
+
 
 @login_required()
 def search_user(request):
@@ -135,15 +144,15 @@ def search_user(request):
         q = request.POST.get('q', '')
         if q:
             users = User.objects.filter(username__contains=q, pub_key__pub_key__isnull=False) \
-                .values('id', 'username', 'first_name') \
-                .exclude(id=request.user.id) \
-                .exclude(pub_key__pub_key__exact="")[0:10]
+                        .values('id', 'username', 'first_name') \
+                        .exclude(id=request.user.id) \
+                        .exclude(pub_key__pub_key__exact="")[0:10]
         else:
             users = User.objects.filter(pub_key__pub_key__isnull=False) \
-                .values('id', 'username', 'first_name') \
-                .exclude(id=request.user.id) \
-                .exclude(pub_key__pub_key__exact="").order_by('first_name')[0:10]
-        return JsonResponse({'users':list(users)})
+                        .values('id', 'username', 'first_name') \
+                        .exclude(id=request.user.id) \
+                        .exclude(pub_key__pub_key__exact="").order_by('first_name')[0:10]
+        return JsonResponse({'users': list(users)})
     else:
         return HttpResponseRedirect('/')
 
@@ -151,9 +160,10 @@ def search_user(request):
 def information(request):
     return render(request, "information.html")
 
+
 def securite(request):
     return render(request, "securite.html")
 
 
 def fonctionnalite(request):
-    return render(request,"Fonctionnalité.html" )
+    return render(request, "feature.html")
