@@ -1,33 +1,40 @@
 {% extends "layout.html" %}
 {% load static %}
 {% block body %}
-<section>
-    <H2>Présentation</H2>
-    Pour permettre une sécurité des messages en cas d'attaque de type Man In The Middle (MITM) nous avons utilisé le chiffrement RSA.
+    <section>
+        <h2>Présentation</h2>
+        <p>Ce projet a pour objectif d'assurer la sécurité et la confidentialité des messages en cas d'attaque Man In
+            The Middle (MITM).
+            Nous avons utilisé la méthode de chiffrement bout en bout (End to End).</p>
 
-    <h2>Sécurité</h2>
-    Pour assuré l'intégrité des message en cas d'attaque Man In The Middle c'est a dire en cas d'interception du messages par un pirates,
-    nous avons choisi d'utiloiser la méthode End To End c'est à dire que le message sera chiffré durant tout sont transfert.
-    <h2>Chiffrement RSA</h2>
-    le principe consiste a généré une paire de clé une qui est publique elle sera donc distribué et accessible
-    et l'autre privé qui comme son nom l'indique ne sera pas accessibles.
-    Voici un exemple définissant l'utilisation du RSA:<br>
+        <h2>Sécurité</h2>
+        <p>Pour assurer l'intégrité des message en cas d'attaque Man In The Middle c'est à dire en cas d'interception du
+            messages par un pirates,nous avons choisi d'exploiter la méthode End To End. Cette mécanique permet de
+            conserver un chiffrement durant le transfert. L'expéditeur chiffrera sont message juste avant l'envoi et
+            seul le destinataire lui même sera en mesure de déchiffrer le message</p>
 
-    L'utilisateur A veut que les messages qui lui sont envoyés soit confidentiel, il rend donc sa clé publique accessible,les autres utlisateurs pourront utilisé cette clé pour chiffré
-    le message,une fois le message chiffré et signé, il sera reçu par l'utilisateur A qui utilisera sa clé privé pour déchiffré le message et vérifié sa signature.<br>
+        <h2>Chiffrement RSA</h2>
+        <p>Le principe consiste à générer une paire de clé. Une est publique elle sera donc distribuée et accessible.
+            La seconde clé privé serra comme son nom l'indique réservée à l'utilisateur et tenu confidentiel.
+            Voici un exemple définissant l'utilisation du RSA:</p>
 
-    Ici les clés générées ont une taille de 2048 bits et une passphrase de 250 caractéres<br>
-    
-   Voici un exemple montrant le principe d'utilisation de la signature<br>
-    <br><img src="{% static "img/signature.png" %}" alt="image_Signature"><br>
+        <p>L'utilisateur A veut que les messages qui lui sont envoyés soit confidentiel, il rend donc sa clé publique
+            accessible. Les autres utlisateurs pourront utiliser cette clé pour chiffré des messages. Une fois le
+            message chiffré, signé et envoyé. Lors de la reception, l'utilisateur A utilise sa clé privé pour déchiffrer
+            et vérifier l'intégrité du message à l'aide la signature de l'expéditeur.</p>
 
-    Voici un exemple illustrant le transfert d'un message chiffré<br>
+        <p>Ici les clés générées ont une taille de 2048 bits et une passphrase aléatoire de 250 caractéres</p>
+
+        <hr>
+
+        Voici un schema illustrant le mécanisme de la signature<br>
+        <br><img src="{% static "img/signature.png" %}" alt="image_Signature"><br>
+
+        <hr>
+
+        Voici un schema illustrant le cycle de vie d'un message<br>
         <br><img src="{% static "img/RSA.png" %}" alt="image_RSA"><br>
 
 
-
-
-
-
-    </Section>
+    </section>
 {% endblock %}
