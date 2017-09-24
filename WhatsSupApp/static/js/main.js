@@ -9,25 +9,6 @@ $(document).ready(function () {
             }
         }
     });
-
-    // Chargement des pages dans les différentes divs
-    // Méthodes ajax à refaire
-
-    // $.ajax({
-    //         url : "chat",
-    //         type : "GET",
-    //         dataType : "json"
-    //     }).done(function() {
-    //         $("#chat").load('chat');
-    // });
-    //
-    // $.ajax({
-    //         url : "contacts",
-    //         type : "GET",
-    //         dataType : "json"
-    //     }).done(function() {
-    //         $("#contacts").load('contacts');
-    // });
 });
 
 $(document).on("click", "#logout_link", function () {

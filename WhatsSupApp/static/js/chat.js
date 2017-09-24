@@ -90,6 +90,7 @@ $(function () {
                 class: "messages_container"
             });
             $("#conv_container").append(contact_conv)
+            contact_conv.show();
         }
     });
 
