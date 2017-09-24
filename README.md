@@ -27,8 +27,8 @@ Ici les clés générées ont une taille de 2048 bits et une passphrase aléatoi
 
 Voici un schéma illustrant le mécanisme de la signature :
 
-![RSA](https://github.com/Dramelac/What-s-Sup/blob/master/WhatsSupApp/static/img/RSA.png)
+![Signature](https://github.com/Dramelac/What-s-Sup/blob/master/WhatsSupApp/static/img/signature.png)
 
 Voici un schéma illustrant le cycle de vie d'un message :
 
-![Signature](https://github.com/Dramelac/What-s-Sup/blob/master/WhatsSupApp/static/img/signature.png)
+![RSA](https://github.com/Dramelac/What-s-Sup/blob/master/WhatsSupApp/static/img/RSA.png)
