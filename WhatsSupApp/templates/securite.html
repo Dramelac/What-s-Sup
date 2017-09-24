@@ -1,40 +1,52 @@
 {% extends "layout.html" %}
 {% load static %}
 {% block body %}
-    <section>
-        <h2>Présentation</h2>
-        <p>Ce projet a pour objectif d'assurer la sécurité et la confidentialité des messages en cas d'attaque Man In
-            The Middle (MITM).
-            Nous avons utilisé la méthode de chiffrement bout en bout (End to End).</p>
+    <div class="container">
+        <div class="row">
+            <h2>Présentation</h2>
+            <section>
+                Ce projet a pour objectif d'assurer la sécurité et la confidentialité des messages en cas d'attaque Man In
+                The Middle (MITM).
+                Nous avons utilisé la méthode de chiffrement bout en bout (End to End).
+            </section>
+            <br>
+            <h2>Sécurité</h2>
+            <section>
+                Pour assurer l'intégrité des message en cas d'attaque Man In The Middle c'est à dire en cas d'interception du
+                messages par un pirates, nous avons choisi d'exploiter la méthode End To End. Cette mécanique permet de
+                conserver un chiffrement durant le transfert. L'expéditeur chiffrera sont message juste avant l'envoi et
+                seul le destinataire lui même sera en mesure de déchiffrer le message
+            </section>
+            <br>
+            <h2>Chiffrement RSA</h2>
+            <section>
+                Le principe consiste à générer une paire de clé. Une est publique, elle sera donc distribuée et accessible.
+                La seconde clé privée sera comme son nom l'indique réservée à l'utilisateur et tenue confidentielle.
+                Voici un exemple définissant l'utilisation du RSA:
+            <br>
+            <br>
+                L'utilisateur A veut que les messages qui lui sont envoyés soit confidentiels, il rend donc sa clé publique
+                accessible (elle est stockée sur le serveur). Grâce à cette clé, l'utilisateur B peut chiffrer ses messages avant de
+                les signer puis de les envoyer. Lors de la réception, l'utilisateur A utilise sa clé privée pour déchiffrer
+                et vérifier l'intégrité du message à l'aide de la signature de l'expéditeur.
+            </section>
 
-        <h2>Sécurité</h2>
-        <p>Pour assurer l'intégrité des message en cas d'attaque Man In The Middle c'est à dire en cas d'interception du
-            messages par un pirates,nous avons choisi d'exploiter la méthode End To End. Cette mécanique permet de
-            conserver un chiffrement durant le transfert. L'expéditeur chiffrera sont message juste avant l'envoi et
-            seul le destinataire lui même sera en mesure de déchiffrer le message</p>
+            <section>Ici les clés générées ont une taille de 2048 bits et une passphrase aléatoire de 250 caractéres.</section>
 
-        <h2>Chiffrement RSA</h2>
-        <p>Le principe consiste à générer une paire de clé. Une est publique elle sera donc distribuée et accessible.
-            La seconde clé privé serra comme son nom l'indique réservée à l'utilisateur et tenu confidentiel.
-            Voici un exemple définissant l'utilisation du RSA:</p>
+            <hr>
 
-        <p>L'utilisateur A veut que les messages qui lui sont envoyés soit confidentiel, il rend donc sa clé publique
-            accessible. Les autres utlisateurs pourront utiliser cette clé pour chiffré des messages. Une fois le
-            message chiffré, signé et envoyé. Lors de la reception, l'utilisateur A utilise sa clé privé pour déchiffrer
-            et vérifier l'intégrité du message à l'aide la signature de l'expéditeur.</p>
+            <section>Voici un schéma illustrant le mécanisme de la signature :</section>
+            <br>
+            <br>
+            <img src="{% static "img/signature.png" %}" alt="image_Signature" class="center-block img-responsive">
+            <br>
 
-        <p>Ici les clés générées ont une taille de 2048 bits et une passphrase aléatoire de 250 caractéres</p>
+            <hr>
 
-        <hr>
-
-        Voici un schema illustrant le mécanisme de la signature<br>
-        <br><img src="{% static "img/signature.png" %}" alt="image_Signature"><br>
-
-        <hr>
-
-        Voici un schema illustrant le cycle de vie d'un message<br>
-        <br><img src="{% static "img/RSA.png" %}" alt="image_RSA"><br>
-
-
-    </section>
+            <section>Voici un schéma illustrant le cycle de vie d'un message :</section>
+            <br>
+            <br>
+            <img src="{% static "img/RSA.png" %}" alt="image_RSA" class="center-block img-responsive">
+        </div>
+    </div>
 {% endblock %}
