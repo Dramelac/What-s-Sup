@@ -42,7 +42,7 @@
             <ul class="nav navbar-nav navbar-right">
             {% if user.is_authenticated %}
                 <li><a href="#">{{ user.get_username }}</a></li>
-                <li><a href="{% url "logout" %}">Déconnexion</a></li>
+                <li id="logout_link"><a href="{% url "logout" %}">Déconnexion</a></li>
             {% endif %}
             </ul>
         </div><!-- /.navbar-collapse -->
