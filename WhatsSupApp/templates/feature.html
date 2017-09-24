@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row col-md-8 col-md-offset-2">
+            <h4>Les technologies utilisées dans ce projet sont:</h4>
+            <h3 class="col-md-12">Développement</h3>
+            <div class="techno col-md-4">
+                <div>
+                    <p>Python 3 + Django Framework</p>
+                    <img src="{% static "img/django.jpg" %}" alt="Python django" class="center-block img-responsive">
+                </div>
+            </div>
+            <div class="techno col-md-4">
+                <div>
+                    <p>La librairie Cryptico pour le chiffrement</p>
+                    <img src="{% static "img/crypto.jpg" %}" alt="crypto logo" class="center-block img-responsive max-br">
+                </div>
+            </div>
+            <div class="techno col-md-4">
+                <div>
+                    <p>La librairie Channels pour le transport dynamique</p>
+                    <img src="{% static "img/django_channels.png" %}" alt="channels logo" class="center-block img-responsive" style="margin-top: 37px;margin-bottom: 37px;">
+                </div>
+            </div>
+        </div>
+        <div class="row col-md-8 col-md-offset-2">
+            <h3 class="col-md-12">Infrastructure</h3>
+            <div class="techno col-md-4">
+                <div>
+                    <p>OS Debian 8</p>
+                    <img src="{% static "img/debian.png" %}" alt="debian logo" class="center-block img-responsive">
+                </div>
+            </div>
+            <div class="techno col-md-4">
+                <div>
+                    <p>Reverse proxy Nginx</p>
+                    <img src="{% static "img/Nginx-Logo.png" %}" alt="nginx logo" class="center-block img-responsive">
+                </div>
+            </div>
+            <div class="techno col-md-4">
+                <div>
+                    <p>Base de données PostgreSQL</p>
+                    <img src="{% static "img/postgresql-php-osx-brew.png" %}" alt="postgresql logo" class="center-block img-responsive">
+                </div>
+            </div>
+            <div class="techno col-md-4">
+                <div>
+                    <p>Process manager Supervisor</p>
+                    <img src="{% static "img/deb_package.png" %}" alt="supervisor logo" class="center-block img-responsive">
+                </div>
+            </div>
+            <div class="techno col-md-4">
+                <div>
+                    <p>Serveur WebSockets Daphne</p>
+                    <img src="{% static "img/deb_package.png" %}" alt="daphne logo" class="center-block img-responsive">
+                </div>
+            </div>
+            <div class="techno col-md-4">
+                <div>
+                    <p>Daemon manager Python Gunicorn</p>
+                    <img src="{% static "img/gunicorn.jpg" %}" alt="Gunicorn logo" class="center-block img-responsive" style="margin-top: 72px;margin-bottom: 72px;">
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

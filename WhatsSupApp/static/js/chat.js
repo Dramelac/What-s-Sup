@@ -1,43 +1,38 @@
-$(function(){
+$(function () {
     $(document).ready(function () {
         loadKey();
         $(".wrap").fadeOut(700);
         $("#search_user_form").submit();
-    })
+    });
     var myName = $("#me").data("name");
     var RSAkey;
     var PublicKeyString;
 
     var socket = new WebSocket("ws://" + window.location.host + "/chat/");
-    socket.onmessage = function(e) {
+    socket.onmessage = function (e) {
         var data = JSON.parse(e.data);
         var contact_conv = $("#chat_with_" + data.sender);
-        if (contact_conv.length === 0){
+        if (contact_conv.length === 0) {
             contact_conv = $('<div/>', {
                 id: "chat_with_" + data.sender,
                 class: "messages_container"
             });
-            $("#conv_container").append(contact_conv)
-            $("#conv_title").text(data.username);
-            $("#receiver_user_id").val(data.sender);
-            $("#chat_container").show();
+            $("#conv_container").append(contact_conv);
         }
-        if (contact_conv.css("display") === "none"){
-            alert("Nouveau message de " + data.username)
-            $(".messages_container").hide();
-            contact_conv.show();
+        if (contact_conv.css("display") === "none") {
+            $("#contact_container").find("[data-id=" + data.sender + "]").attr("class", "contact-btn col-md-12 new_message");
         }
-        var decrypted = decrypt(data.message)
-        switch(decrypted.code) {
+        var decrypted = decrypt(data.message);
+        switch (decrypted.code) {
             case 0:
-                alert("Etrange.. non signé!")
+                alert("Etrange.. non signé!");
                 createMessage(decrypted.message, data.username, data.sender);
                 break;
             case 1:
                 createMessage(decrypted.message, data.username, data.sender);
                 break;
             case 2:
-                alert("Message modifié !!")
+                alert("Message modifié !!");
                 break;
             default:
                 createMessage(decrypted.message, data.username, data.sender);
@@ -55,9 +50,9 @@ $(function(){
             async: true,
             data: 'q=' + search_query,
             success: function (res) {
-                if (res.users.length === 0){
+                if (res.users.length === 0) {
                     contact_container.append($('<p/>', {
-                        text: "Pas de résultat",
+                        text: "Pas de résultat"
                     }));
                     return;
                 }
@@ -71,20 +66,21 @@ $(function(){
                     contact_container.append(contact_btn)
                 })
             },
-            error: function(error) {
+            error: function (error) {
                 alert("Erreur lors de la recherche")
             }
         });
     });
     $(document).on("click", ".contact-btn", function () {
         $("#chat_container").show();
+        $(this).removeClass("new_message");
         var conv = $(this).data("username");
         var room = $(this).data("id");
         $("#conv_title").text(conv);
         $("#receiver_user_id").val(room);
         $(".messages_container").hide();
         var contact_conv = $("#chat_with_" + room);
-        if (contact_conv.length){
+        if (contact_conv.length) {
 
             contact_conv.show();
         }
@@ -94,6 +90,7 @@ $(function(){
                 class: "messages_container"
             });
             $("#conv_container").append(contact_conv)
+            contact_conv.show();
         }
     });
 
@@ -101,7 +98,7 @@ $(function(){
         e.preventDefault();
         var msg = $("#write_zone").val();
         var receiver_user_id = $("#receiver_user_id").val();
-        if (msg.trim().length){
+        if (msg.trim().length) {
             // Get contact PUB Key
             $.ajax({
                 type: 'POST',
@@ -118,12 +115,12 @@ $(function(){
                     $("#write_zone").val("");
                     createMessage(msg, myName, receiver_user_id)
                 },
-                error: function(jqXHR, textStatus) {
+                error: function (jqXHR, textStatus) {
                     if (jqXHR.responseText === "not_connected") {
                         alert("L'utilisateur n'est pas connecté")
                     }
                     else {
-                        alert(textStatus)
+                        alert(textStatus);
                         console.log(jqXHR)
                     }
                 }
@@ -131,27 +128,27 @@ $(function(){
         }
     });
 
-    $("#write_zone").keypress(function(e){
+    $("#write_zone").keypress(function (e) {
         // Submit the form on enter
-        if(e.which === 13) {
+        if (e.which === 13) {
             e.preventDefault();
             $("#chat_form").trigger('submit');
         }
     });
 
-    function createMessage(msg, user, conv_user_id){
+    function createMessage(msg, user, conv_user_id) {
         var who = "";
-        if (user === myName){
+        if (user === myName) {
             who = "my_msg";
         }
-        else{
+        else {
             who = "his_msg";
         }
         var msg_container = $('<div/>', {
             text: msg,
             class: who
         });
-        msg_container.appendTo("#chat_with_" + conv_user_id)
+        msg_container.appendTo("#chat_with_" + conv_user_id);
         var conv = document.getElementById('chat_with_' + conv_user_id);
         conv.scrollTop = conv.scrollHeight;
     }
@@ -171,14 +168,40 @@ $(function(){
         return text;
     }
 
+
+    function RSAToJSON(key) {
+        return {
+            coeff: key.coeff.toString(16),
+            d: key.d.toString(16),
+            dmp1: key.dmp1.toString(16),
+            dmq1: key.dmq1.toString(16),
+            e: key.e.toString(16),
+            n: key.n.toString(16),
+            p: key.p.toString(16),
+            q: key.q.toString(16)
+        }
+    }
+
+    function RSAParse(rsaString) {
+        var json = JSON.parse(rsaString);
+        var rsa = new RSAKey();
+        rsa.setPrivateEx(json.n, json.e, json.d, json.p, json.q, json.dmp1, json.dmq1, json.coeff);
+        return rsa;
+    }
+
     function createKey() {
         RSAkey = cryptico.generateRSAKey(randomString(200), 2048);
+        localStorage["RSAkeyString"] = JSON.stringify(RSAToJSON(RSAkey));
         PublicKeyString = cryptico.publicKeyString(RSAkey);
     }
 
     function loadKey() {
-        if (!PublicKeyString && !RSAkey){
+        if (localStorage["RSAkeyString"] === undefined) {
             createKey();
+        }
+        else {
+            RSAkey = RSAParse(localStorage["RSAkeyString"]);
+            PublicKeyString = cryptico.publicKeyString(RSAkey);
         }
         // Store PUB Key
         $.ajax({
@@ -186,7 +209,7 @@ $(function(){
             url: '/app/store_pub_key/',
             async: true,
             data: {pub_key: PublicKeyString},
-            error: function(error) {
+            error: function (error) {
                 console.log(error);
             }
         });
@@ -194,7 +217,7 @@ $(function(){
 
     function crypto(message, pub_key) {
         var result = cryptico.encrypt(message, pub_key, RSAkey);
-        if (result.status === "success"){
+        if (result.status === "success") {
             return result.cipher.toString();
         } else {
             return "error";
